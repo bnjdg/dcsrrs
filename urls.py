@@ -9,8 +9,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', direct_to_template,{"template":"homepage.html"}, name='home'),
-    (r'^schedule/', decorator_include(login_required, 'schedule.urls')),
+	url(r'^$', 'django.contrib.auth.views.login', name='home'),
+	(r'^schedule/', decorator_include(login_required, 'schedule.urls')),
 	(r'^accounts/', include('registration.urls')),
 	(r'^search_form_room/$', views.search_form_room),
 	(r'^search_by_room/$', views.search_by_room),
@@ -20,7 +20,7 @@ urlpatterns = patterns('',
 	(r'^all_reservations/$', views.all_reservations),
 	(r'^reserve_rooms/$', views.reserve_rooms),
 	(r'^password_change/$', 'django.contrib.auth.views.password_change'),
-    (r'^password_change/done/$', 'django.contrib.auth.views.password_change_done'),
+	(r'^password_change/done/$', 'django.contrib.auth.views.password_change_done'),
 
 	url(r'^event/create/(?P<calendar_slug>[-\w]+)/$',
 		'views.create_or_edit_event',
@@ -29,14 +29,14 @@ urlpatterns = patterns('',
 		'views.delete_event',
 		name="delete_event"),
 	url(r'^event/edit/(?P<calendar_slug>[-\w]+)/(?P<event_id>\d+)/$','views.create_or_edit_event',name='edit_event'),
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+	url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+	url(r'^admin/', include(admin.site.urls)),
 )
 
 if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^site_media/(?P<path>.*)$',
-         'django.views.static.serve',
-         {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-    )
+	urlpatterns += patterns('',
+		(r'^site_media/(?P<path>.*)$',
+		 'django.views.static.serve',
+		 {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+	)
 

@@ -1,15 +1,30 @@
 {% extends "base.html" %}
 
+{% block extra_meta %}
+		{% if user.is_authenticated %}
+			<meta http-equiv="refresh" content="0;url=/my_reservations">
+		{% endif %}
+			{% endblock %}
 {% block title %}Log in{% endblock %}
 
 {% block content %}
+<div id="messages">
+{% if not user.is_authenticated %}
+ <strong><h1>Welcome to Room Reservation System.</h1></strong>
+<p> For accounts, please approach the staff </p>
+{% block messages %}
+<hr></hr>
+<h2> Announcements </h2>
+<p>
 
-<h1>Log in</h1>
-
+</p>
+{% endblock %}
+</div>
+<div id="login">
+<h3>Login form</h3>
 {% if form.errors %}
 <p class="error">Invalid Username or Password</p>
 {% endif %}
-
 <form method="post" action="?next={{ next|default:"/" }}">
 <dl>
 <dt><label for="id_username">Username:</label>{% if form.username.errors %} <span class="error">{{ form.username.errors|join:", " }}</span>{% endif %}</dt>
@@ -19,8 +34,10 @@
 <dt><input type="submit" value="Log in" /></dt>
 </dl>
 </form>
-{% endblock %}
 
+</div>
+
+{% endif %}
+{% endblock %}
 {% block content-related %}
-<p>If you don't have an account, you can Email the admin to get an account</p>
 {% endblock %}

@@ -7,12 +7,12 @@
 <h2>{{calendar}} - Reserve Room</h2>
 <b>{% trans " All fields are required." %}</b>
    {% if errors %}
-        <ul>
-            {% for error in errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+		<ul>
+			{% for error in errors %}
+			<li>{{ error }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
 <br/><br/>
 <form action="" method="post">
 <table>
@@ -21,6 +21,6 @@
 <br/>
 <input type="submit" value="{% trans "Save" %}">
 <input type="button" value="{% trans "Cancel" %}" onclick="window.location='{{next}}'"/>
-<input type="hidden" name="next" value="{{next|default:""}}"/>
+<input type="hidden" name="next" value="{{next|default:"/"}}"/>
 </form>
 {% endblock %}

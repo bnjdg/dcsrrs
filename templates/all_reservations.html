@@ -14,8 +14,8 @@
 		<th>Start time</th>
 		<th>End time</th>
 		<th>Description</th>
-		<th>Creator</th>
-		<th>Created on</th>
+		<th>Reserved by</th>
+		<th>Reserved on</th>
 		<th>Action</th>
 	</tr>
 </thead>
@@ -41,7 +41,7 @@
 		  </a>
 		  {% else %}
 		  {% if user.is_staff %}
-		    <a href="{% url edit_event event.calendar.slug,event.id %}">
+			<a href="{% url edit_event event.calendar.slug,event.id %}">
 			<img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="{% trans "Change" %}"/>
 		  </a>
 		  &nbsp;

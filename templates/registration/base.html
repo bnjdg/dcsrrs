@@ -64,8 +64,8 @@
 {% endif %}
 </div>
 
-<div id="left"> 
 {% if user.is_staff or user.is_superuser %}
+<div id="left"> 
 <h3>Dashboard</h3>
 <ul>
 <li><a href="/admin">Administration</a></li>
@@ -78,8 +78,10 @@
 <li><a href="/schedule/">View Rooms</a></li>
 <li><a href="/accounts/logout">Logout</a></li>
 </ul>
+</div>
 {% else %}
 {% if user.is_authenticated %}
+<div id="left"> 
 	<h3>Dashboard</h3>
 	<ul>
 	<li><a href="/my_reservations">My Reservations</a></li>
@@ -91,17 +93,13 @@
 	<li><a href="/schedule/">View Rooms</a></li>
 	<li><a href="/accounts/logout">Logout</a></li>
 	</ul>
-
-{% else %}
-	<ul>
-    <li><a href="/accounts/login">Login</a></li>
-	</ul>
+</div>
 {% endif%}
 {% endif %}
-</div>
 
+{% if user.is_authenticated %}
 <div id="right">
-
+{% endif %}
         <div id="body">
             {% block body %}
             {% endblock %}
@@ -115,8 +113,9 @@
 
         <div id="footer">{% block footer %}{% endblock %}</div>
 
-
+{% if user.is_authenticated %}
 </div>
+{% endif %}
 
 
 <div style="clear: both;"> </div>

@@ -11,11 +11,11 @@
         <td>{% blocktrans with occurrence.end|date:_("DATETIME_FORMAT") as end_date %}{{ end_date }}{% endblocktrans %}</td>
     </tr>
 	<tr>
-        <td class="left">Creator</td>
+        <td class="left">Reserved by</td>
         <td>{% blocktrans with occurrence.event.creator as creator %}{{ creator }}{% endblocktrans %}</td>
     </tr>
 	<tr>
-        <td class="left">Created on</td>
+        <td class="left">Reserved on</td>
         <td>{% blocktrans with occurrence.event.created_on as created_on %}{{ created_on }}{% endblocktrans %}</td>
     </tr>
     {% if occurrence.event.rule %}

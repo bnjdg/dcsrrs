@@ -8,7 +8,10 @@ body {
 	font: .8em Arial, Sans-Serif; 
 	line-height: 1.8em;
 	 background: #333;
-	 color: #444; 
+	 color: #444;
+	 overflow:auto;
+	 height:95%;
+	 width: 100%;
 }
 
 a 
@@ -613,10 +616,11 @@ a.deletelink:hover {
     font-weight: bold;
     font-family: Arial,Helvetica,sans-serif;
     padding-left: 0;
-    float: right;
+    float: left;
     position: relative;
     margin-top: -2.4em;
     margin-bottom: -2em;
+	margin-left: 400px;
 }
 
 .form-row .object-tools {
@@ -684,13 +688,12 @@ table#change-history tbody th {
 /* PAGE STRUCTURE */
 
 #container {
-    padding: 10px 10px 3px 10px;
+	padding: 5px 5px 3px 5px;
 	width: 95%;
-	height= 95%;
-	margin:20px auto;
+	height: 93%;
+	margin:12px auto;
 	background: #fff;
-    min-width: 760px;
-
+	overflow: auto;
 }
 
 #content {
@@ -703,12 +706,12 @@ table#change-history tbody th {
 
 #content-main {
     float: left;
-    width: 100%;
+    height:100%;
 }
 
 #content-related {
     float: right;
-    width: 18em;
+    width: 16em;
     position: relative;
     margin-right: -19em;
 }
@@ -752,53 +755,10 @@ table#change-history tbody th {
     width: 500px;
 }
 
-/* HEADER */
-/*
-#header {
-    background: #FE7B09 url(img/bg.jpg) repeat-x;
-    color: #eee;
-    overflow: hidden;
-}
-
-#header a:link, #header a:visited {
-    color: white;
-}
-
-#header a:hover {
-    text-decoration: underline;
-}
-
-#branding h1 {
-    padding: 0 10px;
-    font-size: 18px;
-    margin: 8px 0;
-    font-weight: normal;
-    color: #f4f379;
-}
-
-#branding h2 {
-    padding: 0 10px;
-    font-size: 14px;
-    margin: -8px 0 8px 0;
-    font-weight: normal;
-    color: #ffc;
-}
-
-#user-tools {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 1.2em 10px;
-    font-size: 11px;
-    text-align: right;
-}
-*/
 #header {
 	background: #FE7B09 url(img/bg.jpg) repeat-x;
 	height: 97px;
 }
-
-#header
 
 #header h1 {
 	font-size: 30px;
@@ -834,9 +794,10 @@ table#change-history tbody th {
 
 #logo {
 	background: #FE7B09 url(../../img/DCSLogo.jpg) no-repeat;
-	position:absolute;
+	position:relative;
 	height: 97px;
 	width: 100px;
+	float:left;
 }
 
 #user-tools {
@@ -913,13 +874,13 @@ table#change-history tbody th {
 	width: 150px;
 	background: #FFD8AF;
 	margin-bottom: 10px;
-	overflow:hidden;
 	margin-top: 20px;
 	border: 1px dotted #FF8B1E;
-	position:absolute;
+	position:relative;
 	font-size: 14px;
 	line-height: 24px;
-}
+	overflow:hidden;
+	}
 
 #left ul {
 	padding: 5px 10px 10px 10px;
@@ -950,13 +911,13 @@ table#change-history tbody th {
 #right {
 	margin-bottom: 10px;
 	float: center;
-	padding: 0 10px 10px 10px;
+	padding: 0 5px 5px 5px;
 	margin-top: 10px;
-	margin-left: 150px;
+	margin-left: 160px;
 	position: relative;
 	text-align:left;
 	overflow:auto;
-	height:95%;
+	min-width:550px;
 }
 
 

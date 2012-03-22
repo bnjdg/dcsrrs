@@ -3,25 +3,25 @@ import os
 
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-        # ('Your Name', 'your_email@domain.com'),
-        )
+		# ('Your Name', 'your_email@domain.com'),
+		)
 
 MANAGERS = ADMINS
 
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': 'dcsrrs',             # Or path to database file if using sqlite3.
-            'USER': 'djangotest',                      # Not used with sqlite3.
-            'PASSWORD': 'djangotest',                  # Not used with sqlite3.
-            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-            }
-        }
+		'default': {
+			'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+			'NAME': 'dcsrrs_prod',			 # Or path to database file if using sqlite3.
+			'USER': 'djangotest',					  # Not used with sqlite3.
+			'PASSWORD': 'djangotest',				  # Not used with sqlite3.
+			'HOST': '',					  # Set to empty string for localhost. Not used with sqlite3.
+			'PORT': '',					  # Set to empty string for default. Not used with sqlite3.
+			}
+		}
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -51,47 +51,46 @@ MEDIA_URL = '/site_media/'
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+ADMIN_MEDIA_PREFIX = '/site_media/admin/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '+3^08&lnsm^nl1iozv=a-9!e4x$*o%g6pkx=y$)oc8#r$ndn7t'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-        )
+		'django.template.loaders.filesystem.Loader',
+		'django.template.loaders.app_directories.Loader',
+		)
 		
 MIDDLEWARE_CLASSES = (
 		'django.middleware.common.CommonMiddleware',
-        'django.contrib.sessions.middleware.SessionMiddleware',
+		'django.contrib.sessions.middleware.SessionMiddleware',
 		'django.contrib.csrf.middleware.CsrfViewMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
+		'django.contrib.auth.middleware.AuthenticationMiddleware',
 		'django.middleware.csrf.CsrfResponseMiddleware',
 		'django.middleware.locale.LocaleMiddleware',
-		'debug_toolbar.middleware.DebugToolbarMiddleware',
-        )
+		)
 
 ROOT_URLCONF = 'dcsrrs.urls'
 
 TEMPLATE_DIRS = (
-        # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-        # Always use forward slashes, even on Windows.
-        # Don't forget to use absolute paths, not relative paths.
-        os.path.join(PROJECT_DIR,"templates"),
-        )
+		# Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+		# Always use forward slashes, even on Windows.
+		# Don't forget to use absolute paths, not relative paths.
+		os.path.join(PROJECT_DIR,"templates"),
+		)
 
 INSTALLED_APPS = (
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.sites',
-        'django.contrib.admin',
-        'django.contrib.admindocs',
+		'django.contrib.auth',
+		'django.contrib.contenttypes',
+		'django.contrib.sessions',
+		'django.contrib.sites',
+		'django.contrib.admin',
+		'django.contrib.admindocs',
 		'django.contrib.humanize',
-        'schedule',
+		'schedule',
 		'registration',
-        )
+		)
 		
 ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_USE_TLS = True
@@ -102,12 +101,12 @@ EMAIL_PORT = 587
 
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-        'django.contrib.auth.context_processors.auth',
-        "django.core.context_processors.debug",
-        "django.core.context_processors.i18n",
-        "django.core.context_processors.media",
-        "django.core.context_processors.request",
-        )
+		'django.contrib.auth.context_processors.auth',
+		"django.core.context_processors.debug",
+		"django.core.context_processors.i18n",
+		"django.core.context_processors.media",
+		"django.core.context_processors.request",
+		)
 
 FIRST_DAY_OF_WEEK = 7 # SUNDAY
 

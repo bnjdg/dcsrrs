@@ -48,21 +48,24 @@
 <div id="usertools">
 <h2>
 {% trans '   You are logged in as ' %} <strong> {% filter force_escape %}{% firstof user.username %}{% endfilter %}. </strong>
- <a href="/admin"> {% trans 'Go to Admin' %}</a> / <a href="/password_change"> {% trans 'Change password' %}</a> / <a href="/accounts/logout">Logout</a> </h2>
+ <a href="/admin"> {% trans 'Go to Admin' %}</a> /
+ <a href="/password_change"> {% trans 'Change password' %}</a> /
+ <a href="/accounts/logout">Logout</a> </h2>
 </div>
 {% else %}
 {% if user.is_authenticated %}
 <div id="usertools">
 <h2>
 {% trans '   You are logged in as ' %} <strong> {% filter force_escape %}{% firstof user.username %}{% endfilter %} </strong>
- / <a href="/password_change"> {% trans 'Change password' %}</a> / <a href="/accounts/logout">Logout</a> </h2>
+ / <a href="/password_change"> {% trans 'Change password' %}</a> / <a href="/accounts/logout">Logout</a>
+ </h2>
 </div>
 {% endif %}
 {% endif %}
 </div>
 
-<div id="left"> 
 {% if user.is_staff or user.is_superuser %}
+<div id="left"> 
 <h3>Dashboard</h3>
 <ul>
 <li><a href="/admin">Administration</a></li>
@@ -75,8 +78,10 @@
 <li><a href="/schedule/">View Rooms</a></li>
 <li><a href="/accounts/logout">Logout</a></li>
 </ul>
+</div>
 {% else %}
 {% if user.is_authenticated %}
+<div id="left"> 
 	<h3>Dashboard</h3>
 	<ul>
 	<li><a href="/my_reservations">My Reservations</a></li>
@@ -88,17 +93,13 @@
 	<li><a href="/schedule/">View Rooms</a></li>
 	<li><a href="/accounts/logout">Logout</a></li>
 	</ul>
-
-{% else %}
-	<ul>
-    <li><a href="/accounts/login">Login</a></li>
-	</ul>
+</div>
 {% endif%}
 {% endif %}
-</div>
 
+{% if user.is_authenticated %}
 <div id="right">
-
+{% endif %}
         <div id="body">
             {% block body %}
             {% endblock %}
@@ -112,8 +113,9 @@
 
         <div id="footer">{% block footer %}{% endblock %}</div>
 
-
+{% if user.is_authenticated %}
 </div>
+{% endif %}
 
 
 <div style="clear: both;"> </div>
