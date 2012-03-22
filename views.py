@@ -17,7 +17,7 @@ from schedule.utils import check_event_permissions, coerce_date_dict
 import datetime
 import time
 
-from project_sample.forms import SearchDateForm, SearchRoomForm
+from dcsrrs import forms
 
 def create_or_edit_event(request, calendar_slug, event_id=None, next=None,
     template_name='schedule/create_event.html', form_class = EventForm, extra_context=None):

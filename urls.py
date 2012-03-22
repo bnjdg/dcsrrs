@@ -4,7 +4,7 @@ from django.views.generic.simple import direct_to_template
 from django.contrib.auth.decorators import login_required
 from decorator_include import decorator_include
 
-from project_sample import views
+from dcsrrs import views
 from django.contrib import admin
 admin.autodiscover()
 

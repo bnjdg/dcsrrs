@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE|default:"en-us" }}" xml:lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
 <title>{% block title %}{% endblock %}</title>
+{% load adminmedia %}
 <link rel="stylesheet" href="{{ MEDIA_URL }}registration/css/registration.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="{{ MEDIA_URL }}admin/css/base.css" type="text/css" media="screen" />
 {% block extrastyle %}{% endblock %}
-{% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}
+{% if LANGUAGE_BIDI %}<link rel="stylesheet" href="{{ MEDIA_URL }}admin/css/rtl.css" type="text/css" media="screen" />{% endif %}
 <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% admin_media_prefix %}{% endfilter %}";</script>
 {% block extrahead %}{% endblock %}
 {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
@@ -20,15 +21,17 @@
     {% if not is_popup %}
     <!-- Header -->
     <div id="header">
+		<div id="logo"></div>
         <div id="branding">
         {% block branding %}{% endblock %}
         </div>
         {% if user.is_active and user.is_staff %}
         <div id="user-tools">
+		<h2>
             {% trans 'Welcome,' %}
             <strong>{% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}</strong>.
             {% block userlinks %}
-                {% url 'home' as sitehome %}
+                {% url 'home' as sitehome %} 
 				<a href="{{ sitehome }}">
                 {% trans 'Go to Site' %}</a> /
                 {% url 'admin:password_change' as password_change_url %}
@@ -46,6 +49,7 @@
                 {% endif %}
                 {% trans 'Log out' %}</a>
             {% endblock %}
+			</h2>
         </div>
         {% endif %}
         {% block nav-global %}{% endblock %}
