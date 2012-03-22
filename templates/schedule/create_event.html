@@ -1,8 +1,11 @@
 {% extends "schedule/event_form_base.html" %}
 {% load i18n %}
 
+{% block head_title%}{{ calendar }} - Reserve Room{% endblock %}
+
 {% block body %}
-<b>{% trans "Create or change event. All fields are required." %}</b>
+<h2>{{calendar}} - Reserve Room</h2>
+<b>{% trans " All fields are required." %}</b>
 <br/><br/>
 <form action="" method="post">
 <table>

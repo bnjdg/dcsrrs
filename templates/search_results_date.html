@@ -1,28 +1,56 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load scheduletags %}
+
+{% block head_title %}Search Results{% endblock %}
+
+{% block body %}
+
 <p>You searched for: <strong>{{ query }}</strong></p>
-<p>Search results:</p>
-<table border =1>
+<p>Displaying reservations starting from {{ query }}:</p>
+<div class="datagrid"><table>
+<thead>
 	<tr>
+		<th>Room</th>
 		<th>Title</th>
 		<th>Start time</th>
 		<th>End time</th>
 		<th>Description</th>
 		<th>Creator</th>
 		<th>Created on</th>
+		<th>Actions</th>
 	</tr>
+</thead>
+<tbody>
 {% if events %}
-		{% for event in events %}
-	<tr>
-		<th>{{ event.title }}</th>
-		<th>{{ event.start }}</th>
-		<th>{{ event.end }}</th>
-		<th>{{ event.description }}</th>
-		<th>{{ event.creator }}</th>
-		<th>{{ event.created_on }}</th>
+	{% for event in events %}
+		<tr>
+		<td>{{ event.calendar.name }}</td>
+		<td>{{ event.title }}</td>
+		<td>{{ event.start }}</td>
+		<td>{{ event.end }}</td>
+		<td>{{ event.description }}</td>
+		<td>{{ event.creator }}</td>
+		<td>{{ event.created_on }}</td>
+		 <td>
+		 {% ifequal event.creator request.user %}
+		  <a href="{% url edit_event event.calendar.slug,event.id %}">
+			<img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="{% trans "Change" %}"/>
+		  </a>
+		  &nbsp;
+		  <a href="{% url delete_event event.id %}">
+			<img border="0" src="{{ MEDIA_URL }}schedule/img/delete.png" alt="{% trans "Delete" %}"/>
+		  </a>
+		  {% endifequal %}
+		  </td>
 	</tr>
 		{% endfor %}
 {% else %}
 	<tr>
-		<th colspan=6 align=center>No reservations found.</th>
+		<th colspan==7 align=center>No reservations found.</td>
 	</tr>
 {% endif %}
+</tbody>
 </table>
+
+{% endblock %}

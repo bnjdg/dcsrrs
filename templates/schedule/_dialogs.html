@@ -17,7 +17,7 @@ function openEditDialog(node, occurrence_url, event_url, event){
 }
 
 function openDetail(node){
-  var btns = { "Close":function(){$(this).dialog("destroy");}};
+  var btns = {"Close":function(){$(this).dialog("destroy");}};
   dia = $($(node).attr("href")).dialog({'buttons':btns, 'modal':true, 'title':'Details'});
   dia.dialog('open');
   return false;

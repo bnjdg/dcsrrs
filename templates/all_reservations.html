@@ -1,5 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load scheduletags %}
+
+{% block head_title %}All Reservations{% endblock %}
+
+{% block body %}
 <p><strong>All Reservations</strong></p>
-<table border =1>
+<div class="datagrid"><table>
+<thead>
 	<tr>
 		<th>Room</th>
 		<th>Title</th>
@@ -8,22 +16,49 @@
 		<th>Description</th>
 		<th>Creator</th>
 		<th>Created on</th>
+		<th>Action</th>
 	</tr>
+</thead>
+<tbody>
 {% if reservations %}
-		{% for reservation in reservations %}
+		{% for event in reservations %}
 	<tr>
-		<th>{{ reservation.calendar.name }}</th>
-		<th>{{ reservation.title }}</th>
-		<th>{{ reservation.start }}</th>
-		<th>{{ reservation.end }}</th>
-		<th>{{ reservation.description }}</th>
-		<th>{{ reservation.creator }}</th>
-		<th>{{ reservation.created_on }}</th>
-	</tr>
-		{% endfor %}
+		<td>{{ event.calendar.name }}</td>
+		<td>{{ event.title }}</td>
+		<td>{{ event.start }}</td>
+		<td>{{ event.end }}</td>
+		<td>{{ event.description }}</td>
+		<td>{{ event.creator }}</td>
+		<td>{{ event.created_on }}</td>
+		<td>
+		 {% ifequal event.creator request.user %}
+		  <a href="{% url edit_event event.calendar.slug,event.id %}">
+			<img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="{% trans "Change" %}"/>
+		  </a>
+		  &nbsp;
+		  <a href="{% url delete_event event.id %}">
+			<img border="0" src="{{ MEDIA_URL }}schedule/img/delete.png" alt="{% trans "Delete" %}"/>
+		  </a>
+		  {% else %}
+		  {% if user.is_staff %}
+		    <a href="{% url edit_event event.calendar.slug,event.id %}">
+			<img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="{% trans "Change" %}"/>
+		  </a>
+		  &nbsp;
+		  <a href="{% url delete_event event.id %}">
+			<img border="0" src="{{ MEDIA_URL }}schedule/img/delete.png" alt="{% trans "Delete" %}"/>
+		  </a>
+		  {% endif %}
+		  {% endifequal %}
+		</td>
+		</tr>
+			{% endfor %}
 {% else %}
 	<tr>
-		<th colspan=7 align=center>No reservations.</th>
+		<th colspan=8 align=center>No reservations.</th>
 	</tr>
 {% endif %}
+</tbody>
 </table>
+</div>
+{% endblock %}

@@ -1,5 +1,11 @@
-<html>
-<head><title>Error</title></head>
-<body>
+{% extends "base.html" %}
+{% load i18n %}
+{% load scheduletags %}
+
+{% block head_title %}Error{% endblock %}
+
+{% block body %}
 <p>Reservations can only be made for future dates.</p>
-</body></html>
+<a href="{{next}}">Back</a>
+
+{% endblock %}

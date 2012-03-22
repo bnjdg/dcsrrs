@@ -1,20 +1,24 @@
-{% extends "site_base.html" %}
 {% load i18n %}
+{% load scheduletags %}
 <html>
 <head>
 		{% block extra_meta %}
 		{% endblock%}
-		
+	
 		{{ block.super }}
 		
 		<link rel="stylesheet" href="{{ MEDIA_URL }}registration/css/registration.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="{{ MEDIA_URL }}css/jquery-ui.css" type="text/css" meia="screen" />
+		<link rel="stylesheet" href="{{ MEDIA_URL }}schedule/css/schedule.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="{{ MEDIA_URL }}css/jquery-ui.css" type="text/css" meia="screen" />
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/jquery.tooltip.css" />
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.tooltip.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>{% if site_name %}{{ site_name }} : {% endif %}{% block head_title %}{% endblock %}</title>
+	{% block extra_head %}
+	{% endblock %}	    
+
+	<title>{% block title %}{% endblock %}{% block head_title %}{% endblock %} | rrs.dcs</title>
         <!--[if IE]><style>
             div {
                 zoom: 1; /* trigger hasLayout */
@@ -27,20 +31,62 @@
             }
         </style>
         {% endif %}
-		{% block extra_head %}
-		{% endblock %}
+	
         
 </head>
 <body>
 
 <div id="wrap">
 
+
 <div id="header">
-<div id="logo">
+<div id="logo"></div>
+<div id="branding">
+<h1><a href="">Room Reservation System for DCS</a></h1>
 </div>
-<div>
-<h1><a href="#">Room Reservation System</a></h1>
+{% if user.is_authenticated %}
+<div id="usertools">
+<h2>
+{% trans '   You are logged in as ' %} <strong> {% filter force_escape %}{% firstof user.username %}{% endfilter %} </strong>
+ / <a href="/password_change"> {% trans 'Change password' %}</a> / <a href="/accounts/logout">Logout</a> </h2>
 </div>
+{% endif %}
+</div>
+
+<div id="left"> 
+{% if user.is_staff or user.is_superuser %}
+<h3>Dashboard</h3>
+<ul>
+<li><a href="/admin">Administration</a></li>
+<li><a href="/my_reservations">My Reservations</a></li>
+<li><a href="/all_reservations">All Reservations</a></li> 
+<li>Search:</li>
+<li><a href="/search_by_date">&nbsp&nbsp&nbsp&nbspby date</a></li> 
+<li><a href="/search_by_room">&nbsp&nbsp&nbsp&nbspby Room</a></li> 
+<li><a href="/reserve_rooms">Reserve Room</a></li> 
+<li><a href="/schedule/">View Rooms</a></li>
+<li><a href="/accounts/logout">Logout</a></li>
+</ul>
+{% else %}
+{% if user.is_authenticated %}
+	<h3>Dashboard</h3>
+	<ul>
+	<li><a href="/my_reservations">My Reservations</a></li>
+	<li><a href="/all_reservations">All Reservations</a></li> 
+	<li>Search:</li>
+	<li><a href="/search_by_date">&nbsp&nbsp&nbsp&nbspby date</a></li> 
+	<li><a href="/search_by_room">&nbsp&nbsp&nbsp&nbspby Room</a></li> 
+	<li><a href="/reserve_rooms">Reserve Room</a></li> 
+	<li><a href="/schedule/">View Rooms</a></li>
+	<li><a href="/accounts/logout">Logout</a></li>
+	</ul>
+
+{% else %}
+	<ul>
+    <li><a href="/accounts/login">Login</a></li>
+	</ul>
+{% endif%}
+{% endif %}
 </div>
 
 <div id="right">
@@ -60,29 +106,10 @@
 
 </div>
 
-<div id="left"> 
 
-{% if user.is_authenticated %}
-    <h3>Dashboard</h3>
-<ul>
-<li><a href="reservations.html">Reservations</a></li> 
-<li><a href="reserve_room.html">Reserve Room</a></li> 
-<li><a href="/schedule/">View Rooms</a></li> 
-<li><a href="/accounts/logout">Logout</a></li>
-</ul>
-{% else %}
-<ul>
-    <li><a href="/accounts/login">Login</a></li>
-	<li><a href="/accounts/register">Register</a></li>
-</ul>
-{% endif %}
-
-
-</div>
 <div style="clear: both;"> </div>
 
 </div>
-
 
 
 </body>

@@ -1,5 +1,10 @@
-<html>
-<head><title>Conflict Error</title></head>
-<body>
+{% extends "base.html" %}
+{% load i18n %}
+{% load scheduletags %}
+
+{% block head_title %}Error{% endblock %}
+
+{% block body %}
 <p>Reservation cannot be granted. There is a conflict in schedule. Please <a href="{{next}}">try again</a>.</p>
-</body></html>
+
+{% endblock %}

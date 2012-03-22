@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "schedule/base.html" %}
 
 {% block extra_head %}
     {{ block.super }}
@@ -7,8 +7,18 @@
     $(function() {
         $("#id_start_0").datepicker({dateFormat: $.datepicker.ATOM});
         $("#id_end_0").datepicker({dateFormat: $.datepicker.ATOM});
-        $("#id_start_1").timePicker();
-        $("#id_end_1").timePicker();
+        $("#id_start_1").timePicker({
+		startTime: new Date(0, 0, 0, 5, 00, 0), // Using string. Can take string or Date object.
+  endTime: new Date(0, 0, 0, 22, 30, 0), // Using Date object here.
+  show24Hours: true,
+  separator: ':',
+  step: 30});
+        $("#id_end_1").timePicker({
+		startTime: new Date(0, 0, 0, 5, 00, 0), // Using string. Can take string or Date object.
+  endTime: new Date(0, 0, 0, 22, 30, 0), // Using Date object here.
+  show24Hours: true,
+  separator: ':',
+  step: 30});
         $("#id_end_recurring_period").datepicker({dateFormat: $.datepicker.ATOM});
         var oldTime = $.timePicker("#id_start_1").getTime();
         $("#id_start_1").change(function() {

@@ -713,10 +713,10 @@ table#change-history tbody th {
 }
 
 /* HEADER */
-
+/*
 #header {
-    background: #417690;
-    color: #ffc;
+    background: #FE7B09 url(img/bg.jpg) repeat-x;
+    color: #eee;
     overflow: hidden;
 }
 
@@ -752,6 +752,115 @@ table#change-history tbody th {
     font-size: 11px;
     text-align: right;
 }
+*/
+#header {
+	background: #FE7B09 url(img/bg.jpg) repeat-x;
+	height: 97px;
+}
+
+#header
+
+#header h1 {
+	font-size: 30px;
+	font-weight: 100;
+	letter-spacing: -1px;
+	padding: 22px 0 5px 10px;
+}
+#header h1 a {
+	color: #fff;
+	text-decoration: none;
+}
+#header h1 a:hover {
+	color: #000;
+	text-decoration: none;
+}
+#header h2 {
+	color: #fff;
+	font-size: 19px;
+	font-weight: 100;
+	padding: 0 0 0 11px;
+	letter-spacing: -1px;
+	line-height: 12px;
+}
+
+#header h2 a {
+	color: #fff;
+	text-decoration: none;
+}
+#header h2 a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+#logo {
+	background: #FE7B09 url(../../img/DCSLogo.jpg) no-repeat;
+	position:absolute;
+	height: 97px;
+	width: 100px;
+}
+
+#usertools {
+	position: relative;
+	text-align:left;
+	margin-left:120px;
+}
+
+#usertools h2 {
+	color: #fff;
+	font-size: 19px;
+	font-weight: 100;
+	padding: 0 0 0 11px;
+	letter-spacing: -1px;
+	line-height: 12px;
+}
+
+#usertools h2 a {
+	color: #fff;
+	text-decoration: none;
+}
+
+#usertools h2 a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+#branding {
+	position: relative;
+	margin-left:100px;
+}
+
+#branding h1 {
+	font-size: 30px;
+	font-weight: 100;
+	letter-spacing: -1px;
+	padding: 22px 0 5px 10px;
+}
+#branding h1 a {
+	color: #fff;
+	text-decoration: none;
+}
+#branding h1 a:hover {
+	color: #000;
+	text-decoration: none;
+}
+#branding h2 {
+	color: #fff;
+	font-size: 19px;
+	font-weight: 100;
+	padding: 0 0 0 11px;
+	letter-spacing: -1px;
+	line-height: 12px;
+}
+
+#branding h2 a {
+	color: #fff;
+	text-decoration: none;
+}
+#branding h2 a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
 
 /* SIDEBAR */
 
