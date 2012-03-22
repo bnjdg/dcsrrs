@@ -1,8 +1,18 @@
 {% extends "schedule/reservation_form_base.html" %}
 {% load i18n %}
 
+{% block head_title%}{{ room }} - Reserve Room{% endblock %}
+
 {% block body %}
-<b>{% trans "Create or change occurrence. All fields are required." %}</b>
+<h2>{{room}} - Reserve Room</h2>
+<b>{% trans " All fields are required." %}</b>
+   {% if errors %}
+		<ul>
+			{% for error in errors %}
+			<li>{{ error }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
 <br/><br/>
 <form action="" method="post">
 <table>
@@ -11,6 +21,6 @@
 <br/>
 <input type="submit" value="{% trans "Save" %}">
 <input type="button" value="{% trans "Cancel" %}" onclick="window.location='{{next}}'"/>
-<input type="hidden" name="next" value="{{next|default:""}}"/>
+<input type="hidden" name="next" value="{{next|default:"/"}}"/>
 </form>
 {% endblock %}

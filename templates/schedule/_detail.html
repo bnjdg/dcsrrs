@@ -12,21 +12,21 @@
     </tr>
 	<tr>
         <td class="left">Reserved by</td>
-        <td>{% blocktrans with occurrence.event.creator as creator %}{{ creator }}{% endblocktrans %}</td>
+        <td>{% blocktrans with occurrence.reservation.creator as creator %}{{ creator }}{% endblocktrans %}</td>
     </tr>
 	<tr>
         <td class="left">Reserved on</td>
-        <td>{% blocktrans with occurrence.event.created_on as created_on %}{{ created_on }}{% endblocktrans %}</td>
+        <td>{% blocktrans with occurrence.reservation.created_on as created_on %}{{ created_on }}{% endblocktrans %}</td>
     </tr>
-    {% if occurrence.event.rule %}
+    {% if occurrence.reservation.rule %}
         {% if not occurrence.id %}
             <tr>
-                <td class="left">Reoccurs</td><td>{{occurrence.event.rule}}</td>
+                <td class="left">Reoccurs</td><td>{{occurrence.reservation.rule}}</td>
             </tr>
-            {% if occurrence.event.end_recurring_period %}
+            {% if occurrence.reservation.end_recurring_period %}
                 <tr>
                     <td class="left">Until</td>
-                    <td>{% blocktrans with occurrence.event.end_recurring_period|date:_("DATETIME_FORMAT") as end_date %}{{ end_date }}{% endblocktrans %}</td>
+                    <td>{% blocktrans with occurrence.reservation.end_recurring_period|date:_("DATETIME_FORMAT") as end_date %}{{ end_date }}{% endblocktrans %}</td>
                 </tr>
             {% endif %}
         {% endif %}

@@ -2,29 +2,29 @@
 {% load i18n %}
 {% load scheduletags %}
 
-{% block head_title %}{{calendar.name}}{% endblock %}
+{% block head_title %}{{room.name}}{% endblock %}
 
 {% block body %}
 
-<h1>Calendar metadata</h1>
+<h1>Room metadata</h1>
 
-<p>Name: {{calendar.name}}</p>
-<p>Slug: {{calendar.slug}}</p>
-<p>Event count: {{calendar.events.count}}</p>
+<p>Name: {{room.name}}</p>
+<p>Slug: {{room.slug}}</p>
+<p>Reservation count: {{room.reservations.count}}</p>
 
 <div>
     <p>See as:</p>
     <ul>
-        <li><a href="{% url compact_calendar calendar.slug %}">Small Month</a></li>
-        <li><a href="{% url month_calendar calendar.slug %}">1 Month</a></li>
-        <li><a href="{% url tri_month_calendar calendar.slug %}">3 Months</a></li>
-        <li><a href="{% url year_calendar calendar.slug %}">This Year</a></li>
-        <li><a href="{% url week_calendar calendar.slug %}">Weekly</a></li>
-        <li><a href="{% url day_calendar calendar.slug %}">Daily</a></li>
-        <li><a href="/schedule/feed/calendar/upcoming/{{ calendar.id }}/">Feed</a></li>
+        <li><a href="{% url compact_room room.slug %}">Small Month</a></li>
+        <li><a href="{% url month_room room.slug %}">1 Month</a></li>
+        <li><a href="{% url tri_month_room room.slug %}">3 Months</a></li>
+        <li><a href="{% url year_room room.slug %}">This Year</a></li>
+        <li><a href="{% url week_room room.slug %}">Weekly</a></li>
+        <li><a href="{% url day_room room.slug %}">Daily</a></li>
+        <li><a href="/schedule/feed/room/upcoming/{{ room.id }}/">Feed</a></li>
     </ul>
 </div>
 
-<div><i>Now see docstring for schedule.views.calendar</i></div>
+<div><i>Now see docstring for schedule.views.room</i></div>
 
 {% endblock %}

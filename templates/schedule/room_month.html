@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load scheduletags %}
-{% block head_title %}{{calendar.name}}{% endblock %}
+{% block head_title %}{{room.name}}{% endblock %}
 
 {% block extra_head %}
     {{ block.super }}
@@ -9,14 +9,14 @@
 
 {% block body %}
 <div class="tablewrapper">
-  <div class="calendarname">{{ calendar.name }}</div>
+  <div class="roomname">{{ room.name }}</div>
   
-  {% prevnext "month_calendar" calendar.slug periods.month "F Y"%}
+  {% prevnext "month_room" room.slug periods.month "F Y"%}
   <div class="now">
-    <a href="{% url month_calendar calendar.slug %}">
+    <a href="{% url month_room room.slug %}">
       This month
     </a>
   </div>
-  {% month_table calendar periods.month "regular" %}
+  {% month_table room periods.month "regular" %}
 </div>
 {% endblock %}

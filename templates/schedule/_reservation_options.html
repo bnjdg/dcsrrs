@@ -1,0 +1,41 @@
+
+<span class="actions">
+{% if edit_reservation %}
+<span class="edit">
+{% if occurrence.reservation.rule %}
+    {% if occurrence.id %}
+        <a href="#" onclick="openURL('{{ edit_occurrence }}?next={{ here }}', reservation);">
+            <img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="Edit Reservation">
+        </a>
+    {% else %}
+        <a href="#" onclick="openEditDialog(this, '{{ edit_occurrence }}?next={{ here }}', '{{ edit_reservation }}?next={{ here }}', reservation);">
+            <img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="Edit Reservation">
+        </a>
+    {% endif %}
+{% else %}
+    <a href="#" onclick="openURL('{{ edit_reservation }}?next={{ here }}', reservation);">
+        <img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="Edit Reservation">
+    </a>
+{% endif %}
+{% endif %}
+</span>
+{% if delete_reservation %}
+<span class="delete">
+{% if occurrence.reservation.rule %}
+    {% if occurrence.id %}
+        <a href="#" onclick="openURL('{{cancel_occurrence}}?next={{here}}', reservation);">
+            <img border="0" src="{{ MEDIA_URL }}schedule/img/delete.png" alt="Delete Reservation">
+        </a>
+    {% else %}
+        <a href="#" onclick="openCancelDialog(this, '{{ cancel_occurrence }}?next={{here}}', '{{delete_reservation}}?next={{here}}', reservation);">
+            <img border="0" src="{{ MEDIA_URL }}schedule/img/delete.png" alt="Delete Reservation">
+        </a>
+    {% endif %}
+{% else %}
+<a href="#" onclick="openURL('{{delete_reservation}}?next={{here}}', reservation);">
+    <img border="0" src="{{ MEDIA_URL }}schedule/img/delete.png" alt="Delete Reservation">
+</a>
+{% endif %}
+{% endif %}
+</span>
+</span>

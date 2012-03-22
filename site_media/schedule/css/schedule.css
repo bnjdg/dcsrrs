@@ -46,22 +46,22 @@ td.daynumber div.daycell .cancelled {
   color:gray;
 }
 
-td.daynumber div.daycell .eventcell0 {
+td.daynumber div.daycell .reservationcell0 {
   border-right:none;
   margin-right:-1px;
 }
 
-td.daynumber div.daycell .eventcell1 {
+td.daynumber div.daycell .reservationcell1 {
 }
 
-td.daynumber div.daycell .eventcell2 {
+td.daynumber div.daycell .reservationcell2 {
   border-right:none;
   margin-right:-1px;
   border-left:none;
   margin-left:-1px;
 }
 
-td.daynumber div.daycell .eventcell3 {
+td.daynumber div.daycell .reservationcell3 {
   border-left:none;
   margin-left:-1px;
 }
@@ -85,11 +85,11 @@ div.detail tr {vertical-align:top;}
 div.detail td {COLOR: #FFF;}
 div.detail td.left {font-weight:bold;COLOR: #FFF;}
 
-div.event_options div.title {
+div.reservation_options div.title {
   float:left;
 }
 
-div.event_options div.buttons {
+div.reservation_options div.buttons {
   float:right;
 }
 
@@ -98,7 +98,7 @@ div.occ span.actions span.edit {padding-right:3px;}
 
 /**** MONTH TABLE ****/
 
-table.calendar {
+table.room {
 	border-collapse: separate;
 	border-spacing: 2px;
   border:2px solid #f0f0f0;
@@ -114,31 +114,31 @@ table.calendar {
 	text-align: center
 }
 
-table.calendar td {
+table.room td {
   text-align:center;
 	margin: 2px;
 	padding: 1px;
 }
 
-table.calendar td.daynumber {
+table.room td.daynumber {
 	font-size: 10pt;
 	vertical-align: top;
 	text-align:left;
 }
 
-table.calendar td.noday {
+table.room td.noday {
 	background-color: #eef
 }
 
-table.calendar td.free {
+table.room td.free {
 	background-color: #c5dbff
 }
 
-table.calendar td.busy {
+table.room td.busy {
 	background-color: #ffcece
 }
 
-table.calendar td.small {
+table.room td.small {
 	width: 28px;
 	height: 20px;
 	text-align: center
@@ -161,7 +161,7 @@ td.small div.header a {
     padding:0;
 }
 
-td.daynumber div.eventcell {
+td.daynumber div.reservationcell {
     background:#f0f0f0;
     border:1px dotted grey;
     clear:both;
@@ -175,7 +175,7 @@ td.daynumber div.starttime {
     width:35px;
 }
 
-td.daynumber div.eventdesc {
+td.daynumber div.reservationdesc {
     float:left;
     height:1em;
     overflow:hidden;
@@ -273,7 +273,7 @@ body, td {font-family:sans-serif;}
   top:50px;
 }
 
-div.calendarname {
+div.roomname {
   border-color:#e0e0e0;
   border-style:solid;
   border-width: 0 0px 3px 3px;

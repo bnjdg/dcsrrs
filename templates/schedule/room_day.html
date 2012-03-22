@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load scheduletags %}
-{% block head_title %}{{calendar.name}}{% endblock %}
+{% block head_title %}{{room.name}}{% endblock %}
 {% block extra_head %}
     {{ block.super }}
     {% include "schedule/_dialogs.html" %}
@@ -9,15 +9,15 @@
 {% block body %}
 
 <div class="navigation">
-  <a href="{% url month_calendar calendar.slug %}{% querystring_for_date periods.day.start 2 %}">
+  <a href="{% url month_room room.slug %}{% querystring_for_date periods.day.start 2 %}">
 	Month View
   </a>
 </div>
 <div class="tablewrapper">
-    <div class="calendarname">{{ calendar.name }}</div>
-    {% prevnext "day_calendar" calendar.slug periods.day "l, F d, Y" %}
+    <div class="roomname">{{ room.name }}</div>
+    {% prevnext "day_room" room.slug periods.day "l, F d, Y" %}
     <div class="now">
-      <a href="{% url day_calendar calendar.slug %}">
+      <a href="{% url day_room room.slug %}">
         Today
       </a>
     </div>

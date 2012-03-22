@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load scheduletags %}
+
+{% block body %}
+
+<div class="navigation">
+  <a href="{% url day_room reservation.room.slug %}{% querystring_for_date reservation.start 3 %}">
+    Day
+  </a>
+  <a href="{% url month_room reservation.room.slug %}{% querystring_for_date reservation.start 2 %}">
+    Month
+  </a>
+</div>
+
+<div class="reservation_actions" align="center">
+  {% if back_url %}
+  <a href="{{ back_url }}">
+    <img border="0" src="{{ MEDIA_URL }}schedule/img/left_mod.png" alt="{% trans "Back" %}"/>
+  </a>
+  &nbsp;
+  {% endif %}
+  {% ifequal reservation.creator request.user %}
+  <a href="{% url edit_reservation reservation.room.slug,reservation.id %}">
+    <img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="{% trans "Change" %}"/>
+  </a>
+  &nbsp;
+  <a href="{% url delete_reservation reservation.id %}">
+    <img border="0" src="{{ MEDIA_URL }}schedule/img/delete.png" alt="{% trans "Delete" %}"/>
+  </a>
+  {% endifequal %}
+</div>
+<h2 align="center">{{reservation.title}}</h2>
+<table align="center">
+<tr>
+<td>Starts</td>
+<td>{% blocktrans with reservation.start|date:_("DATETIME_FORMAT") as start_date %}{{ start_date }}{% endblocktrans %}</td>
+</tr>
+<tr>
+<td>Ends</td>
+<td>{% blocktrans with reservation.end|date:_("DATETIME_FORMAT") as end_date %}{{ end_date }}{% endblocktrans %}</td>
+</tr>
+<tr>
+<td>Creator</td>
+<td>{% blocktrans with reservation.creator as creator %}{{ creator }}{% endblocktrans %}</td>
+</tr>
+<tr>
+<td>Created on</td>
+<td>{% blocktrans with reservation.created_on as created_on %}{{ created_on }}{% endblocktrans %}</td>
+</tr>
+<tr>
+<td>Reoccurs</td>
+{% if reservation.rule %}
+<td>{{ reservation.rule }} until {% blocktrans with reservation.end_recurring_period|date:_("DATETIME_FORMAT") as end_recurring_date %}{{ end_recurring_date }}{% endblocktrans %}</td>
+{% else %}
+<td>{% trans "Never. This is a 'one time only' reservation." %}</td>
+{% endif %}
+</tr></table>
+{% if reservation.description %}
+<h3>Description</h3>
+<p>{{reservation.description}}</p>
+{% endif %}
+
+{% endblock %}

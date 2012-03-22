@@ -1,16 +1,16 @@
 {{ block.super }}
 <script>
-function openCancelDialog(node, cancel_url, delete_url, event){
-  event.stopPropagation();
+function openCancelDialog(node, cancel_url, delete_url, reservation){
+  reservation.stopPropagation();
   var btns = {"This":function(){window.location=cancel_url;}, "All":function(){window.location=delete_url}, "Do nothing":function(){$(this).dialog("destroy");}};
   dia = $("#delete_dialog").dialog({'buttons':btns, 'modal':true});
   dia.dialog('open');
   return false;
 }
 
-function openEditDialog(node, occurrence_url, event_url, event){
-  event.stopPropagation();
-  var btns = {"This":function(){window.location=occurrence_url;}, "All":function(){window.location=event_url}, "Do nothing":function(){$(this).dialog("destroy");}};
+function openEditDialog(node, occurrence_url, reservation_url, reservation){
+  reservation.stopPropagation();
+  var btns = {"This":function(){window.location=occurrence_url;}, "All":function(){window.location=reservation_url}, "Do nothing":function(){$(this).dialog("destroy");}};
   dia = $("#edit_dialog").dialog({'buttons':btns, 'modal':true});
   dia.dialog('open');
   return false;
@@ -23,17 +23,17 @@ function openDetail(node){
   return false;
 }
 
-function openURL(url, event){
-    event.stopPropagation();
+function openURL(url, reservation){
+    reservation.stopPropagation();
     window.location=url;
 }
 </script>
 
 <div style="display:none;" id="delete_dialog" title="Question">
-  Do you want to cancel this occurrence or delete all occurrences of this event?
+  Do you want to cancel this occurrence or delete all occurrences of this reservation?
 </div>
 
-<div style="display:none;" id="edit_dialog" title="This is a recurring event">
+<div style="display:none;" id="edit_dialog" title="This is a recurring reservation">
   Do you want to edit this occurrence or all occurrences?
 </div>
 

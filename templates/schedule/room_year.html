@@ -2,16 +2,16 @@
 {% load scheduletags %}
 {% block body %}
 <div class="tablewrapper">
-    <div class="calendarname">{{ calendar.name }}</div>
-    {% prevnext "year_calendar" calendar.slug periods.year "Y" %}
+    <div class="roomname">{{ room.name }}</div>
+    {% prevnext "year_room" room.slug periods.year "Y" %}
     <table align="center">
     <tr>
     {% for month in periods.year.get_months %}
         <td valign="top">
-        <a href="{% url month_calendar calendar.slug %}{% querystring_for_date month.start 2 %}">
+        <a href="{% url month_room room.slug %}{% querystring_for_date month.start 2 %}">
             {{month.name}}
         </a>
-        {% month_table calendar month "small" %}</td>
+        {% month_table room month "small" %}</td>
         <td width="12">&nbsp;</td>
         {% ifequal forloop.counter 3  %}
             </tr>
@@ -29,11 +29,11 @@
     </tr>
 </table></p>
 <div class="navigation">
-  <a href="{% url month_calendar calendar.slug %}">
-    Current Month Calendar
+  <a href="{% url month_room room.slug %}">
+    Current Month Room
   </a>
-  <a href="{% url year_calendar calendar.slug %}">
-    Current Year Calendar
+  <a href="{% url year_room room.slug %}">
+    Current Year Room
   </a>
 </div>
 {% endblock %}

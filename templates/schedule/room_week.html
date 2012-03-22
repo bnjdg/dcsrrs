@@ -9,19 +9,19 @@
 {% block body %}
 
 <div class="navigation">
-  <a href="{% url month_calendar calendar.slug %}{% querystring_for_date periods.week.start 2 %}">
+  <a href="{% url month_room room.slug %}{% querystring_for_date periods.week.start 2 %}">
     Month
   </a>
-  <a href="{% url year_calendar calendar.slug %}{% querystring_for_date periods.week.start 1%}">
+  <a href="{% url year_room room.slug %}{% querystring_for_date periods.week.start 1%}">
     Year
   </a>
 </div>
 
 <div class="tablewrapper">
-    <div class="calendarname">{{ calendar.name }}</div>
-    {% prevnext "week_calendar" calendar.slug periods.week "\Week W, M Y" %}
+    <div class="roomname">{{ room.name }}</div>
+    {% prevnext "week_room" room.slug periods.week "\Week W, M Y" %}
     <div class="now">
-      <a href="{% url week_calendar calendar.slug %}">
+      <a href="{% url week_room room.slug %}">
         This week
       </a>
     </div>
@@ -31,7 +31,7 @@
   {% for day in periods.week.get_days %}
     <div class="weekday weekday{{forloop.counter}}">
       <div class="weekdayheader">
-        <a href="{% url day_calendar calendar.slug %}{% querystring_for_date day.start %}">
+        <a href="{% url day_room room.slug %}{% querystring_for_date day.start %}">
           {{day.start|date:"l, d"}}
         </a>
       </div>

@@ -10,17 +10,17 @@ from django.views.generic.create_update import delete_object
 from datetime import datetime
 
 from schedule.conf.settings import GET_EVENTS_FUNC, OCCURRENCE_CANCEL_REDIRECT
-from schedule.forms import EventForm, OccurrenceForm
+from schedule.forms import ReservationForm, OccurrenceForm
 from schedule.models import *
 from schedule.periods import weekday_names
-from schedule.utils import check_event_permissions, coerce_date_dict
+from schedule.utils import check_reservation_permissions, coerce_date_dict
 import datetime
 import time
 
 from dcsrrs.forms import SearchDateForm, SearchRoomForm
 
-def create_or_edit_event(request, calendar_slug, event_id=None, next=None,
-    template_name='schedule/create_event.html', form_class = EventForm, extra_context=None):
+def create_or_edit_reservation(request, room_slug, reservation_id=None, next=None,
+    template_name='schedule/create_reservation.html', form_class = ReservationForm, extra_context=None):
     errors = []
     extra_context = extra_context or {}
     date = coerce_date_dict(request.GET)
@@ -40,10 +40,10 @@ def create_or_edit_event(request, calendar_slug, event_id=None, next=None,
     instance = None
     conflict = False
 
-    if event_id is not None:
-        instance = get_object_or_404(Event, id=event_id)
+    if reservation_id is not None:
+        instance = get_object_or_404(Reservation, id=reservation_id)
 
-    calendar = get_object_or_404(Calendar, slug=calendar_slug)
+    room = get_object_or_404(Room, slug=room_slug)
 
     form = form_class(data=request.POST or None, instance=instance,
         hour24=True, initial=initial_data)
@@ -53,10 +53,10 @@ def create_or_edit_event(request, calendar_slug, event_id=None, next=None,
         start_time = d['start']
         end_time = d['end']
         
-        start_conflict = calendar.event_set.filter(start__gt=start_time, start__lt=end_time).exclude(id=event_id)
-        end_conflict = calendar.event_set.filter(end__gt=start_time, end__lt=end_time).exclude(id=event_id)
-        during_conflict = calendar.event_set.filter(start__lt=start_time, end__gt=end_time).exclude(id=event_id)
-        start_end_conflict = calendar.event_set.filter(start=start_time, end=end_time).exclude(id=event_id)
+        start_conflict = room.reservation_set.filter(start__gt=start_time, start__lt=end_time).exclude(id=reservation_id)
+        end_conflict = room.reservation_set.filter(end__gt=start_time, end__lt=end_time).exclude(id=reservation_id)
+        during_conflict = room.reservation_set.filter(start__lt=start_time, end__gt=end_time).exclude(id=reservation_id)
+        start_end_conflict = room.reservation_set.filter(start=start_time, end=end_time).exclude(id=reservation_id)
 
         if(start_conflict or end_conflict or during_conflict or start_end_conflict):
             conflict = True
@@ -67,7 +67,7 @@ def create_or_edit_event(request, calendar_slug, event_id=None, next=None,
 			next = get_next_url(request, next)
 			context = {
 				"form": form,
-				"calendar": calendar,
+				"room": room,
 				"next":next,
 				"errors":errors,
 				}
@@ -78,51 +78,51 @@ def create_or_edit_event(request, calendar_slug, event_id=None, next=None,
 			next = get_next_url(request, next)
 			context = {
 				"form": form,
-				"calendar": calendar,
+				"room": room,
 				"next":next,
 				"errors":errors,
 				}
 			return render_to_response(template_name, context, context_instance=RequestContext(request))
         else:
-            event = form.save(commit=False)
+            reservation = form.save(commit=False)
             if instance is None:
-                event.creator = request.user
-                event.calendar = calendar
-            event.save()
-            next = next or reverse('event', args=[event.id])
+                reservation.creator = request.user
+                reservation.room = room
+            reservation.save()
+            next = next or reverse('reservation', args=[reservation.id])
             next = get_next_url(request, next)
             return HttpResponseRedirect(next)
 
     next = get_next_url(request, next)
     context = {
         "form": form,
-        "calendar": calendar,
+        "room": room,
         "next":next
     }
     context.update(extra_context)
     return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 
-@check_event_permissions
-def delete_event(request, event_id, next=None, login_required=True, extra_context=None):
+@check_reservation_permissions
+def delete_reservation(request, reservation_id, next=None, login_required=True, extra_context=None):
     """
-    After the event is deleted there are three options for redirect, tried in
+    After the reservation is deleted there are three options for redirect, tried in
     this order:
 
     # Try to find a 'next' GET variable
     # If the key word argument redirect is set
-    # Lastly redirect to the event detail of the recently create event
+    # Lastly redirect to the reservation detail of the recently create reservation
     """
     extra_context = extra_context or {}
-    event = get_object_or_404(Event, id=event_id)
-    next = next or reverse('day_calendar', args=[event.calendar.slug])
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+    next = next or reverse('day_room', args=[reservation.room.slug])
     next = get_next_url(request, next)
     extra_context['next'] = next
     u = request.user
-    if event.creator == u:
-        return delete_object(request, model = Event, object_id = event_id, post_delete_redirect = next, template_name = "schedule/delete_event.html", extra_context = extra_context, login_required = login_required)
+    if reservation.creator == u:
+        return delete_object(request, model = Reservation, object_id = reservation_id, post_delete_redirect = next, template_name = "schedule/delete_reservation.html", extra_context = extra_context, login_required = login_required)
     elif u.is_staff or u.is_superuser:
-            return delete_object(request, model = Event, object_id = event_id, post_delete_redirect = next, template_name = "schedule/delete_event.html", extra_context = extra_context, login_required = login_required)
+            return delete_object(request, model = Reservation, object_id = reservation_id, post_delete_redirect = next, template_name = "schedule/delete_reservation.html", extra_context = extra_context, login_required = login_required)
     else:
         return render_to_response('cannot_delete.html')
 
@@ -156,8 +156,8 @@ def search_by_date(request):
         if form.is_valid(): 
 			date = form.cleaned_data['date']
 			query = date.strftime("%B %d,%Y - %A")
-			events = Event.objects.filter(start__gte=date)
-			return render_to_response('search_results_date.html',{'events': events, 'query': query}, context_instance=RequestContext(request))
+			reservations = Reservation.objects.filter(start__gte=date)
+			return render_to_response('search_results_date.html',{'reservations': reservations, 'query': query}, context_instance=RequestContext(request))
     else:
         form = SearchDateForm()
 	return render_to_response('search_form_date.html', {'form': form},context_instance=RequestContext(request))
@@ -175,9 +175,9 @@ def search_by_room(request):
 		form = SearchRoomForm(request.POST)
 		if form.is_valid():
 			room = form.cleaned_data['room']
-			events = Event.objects.filter(calendar__name__icontains=room).filter(start__gte=datetime.datetime.now)
+			reservations = Reservation.objects.filter(room__name__icontains=room).filter(start__gte=datetime.datetime.now)
 			return render_to_response('search_results_room.html',
-				{'events': events, 'query': room},
+				{'reservations': reservations, 'query': room},
 				context_instance=RequestContext(request))
 	else:
 		form = SearchRoomForm()
@@ -185,14 +185,14 @@ def search_by_room(request):
 
 @login_required
 def my_reservations(request):
-	reservations = Event.objects.filter(creator=request.user).filter(start__gte=datetime.datetime.now)
+	reservations = Reservation.objects.filter(creator=request.user).filter(start__gte=datetime.datetime.now)
 	return render_to_response('my_reservations.html',
 		{'reservations': reservations},
 		context_instance=RequestContext(request))
 		
 @login_required
 def all_reservations(request):
-	reservations = Event.objects.filter(start__gte=datetime.datetime.now).order_by('calendar__name')
+	reservations = Reservation.objects.filter(start__gte=datetime.datetime.now).order_by('room__name')
 	return render_to_response('all_reservations.html',
 		{'reservations': reservations},
 		context_instance=RequestContext(request))
@@ -201,7 +201,7 @@ def all_reservations(request):
 def reserve_rooms(request):
 	next = request.META.get('HTTP_REFERER', '/reserve_rooms')
 	next = get_next_url(request, next)
-	rooms = Calendar.objects.all()
+	rooms = Room.objects.all()
 	return render_to_response('reserve_rooms.html',
 		{'rooms': rooms, 'next':next},
 		context_instance=RequestContext(request))

@@ -22,32 +22,32 @@
 	</tr>
 </thead>
 <tbody>
-{% if events %}
-	{% for event in events %}
+{% if reservations %}
+	{% for reservation in reservations %}
 		<tr>
-		<td>{{ event.calendar.name }}</td>
-		<td>{{ event.title }}</td>
-		<td>{{ event.start }}</td>
-		<td>{{ event.end }}</td>
-		<td>{{ event.description }}</td>
-		<td>{{ event.creator }}</td>
-		<td>{{ event.created_on }}</td>
+		<td>{{ reservation.room.name }}</td>
+		<td>{{ reservation.title }}</td>
+		<td>{{ reservation.start }}</td>
+		<td>{{ reservation.end }}</td>
+		<td>{{ reservation.description }}</td>
+		<td>{{ reservation.creator }}</td>
+		<td>{{ reservation.created_on }}</td>
 		 <td>
-		  {% ifequal event.creator request.user %}
-		  <a href="{% url edit_event event.calendar.slug,event.id %}">
+		  {% ifequal reservation.creator request.user %}
+		  <a href="{% url edit_reservation reservation.room.slug,reservation.id %}">
 			<img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="{% trans "Change" %}"/>
 		  </a>
 		  &nbsp;
-		  <a href="{% url delete_event event.id %}">
+		  <a href="{% url delete_reservation reservation.id %}">
 			<img border="0" src="{{ MEDIA_URL }}schedule/img/delete.png" alt="{% trans "Delete" %}"/>
 		  </a>
 		  {% else %}
 		  {% if user.is_staff %}
-		    <a href="{% url edit_event event.calendar.slug,event.id %}">
+		    <a href="{% url edit_reservation reservation.room.slug,reservation.id %}">
 			<img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="{% trans "Change" %}"/>
 		  </a>
 		  &nbsp;
-		  <a href="{% url delete_event event.id %}">
+		  <a href="{% url delete_reservation reservation.id %}">
 			<img border="0" src="{{ MEDIA_URL }}schedule/img/delete.png" alt="{% trans "Delete" %}"/>
 		  </a>
 		  {% endif %}

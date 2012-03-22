@@ -5,13 +5,13 @@ from django.core.urlresolvers import reverse
 from django.utils.dateformat import format
 from django.conf import settings
 from schedule.conf.settings import CHECK_PERMISSION_FUNC
-from schedule.models import Calendar
+from schedule.models import Room
 from schedule.periods import weekday_names, weekday_abbrs,  Month
 
 register = template.Library()
 
 @register.inclusion_tag("schedule/_month_table.html",  takes_context=True)
-def month_table(context,  calendar, month, size="regular", shift=None):
+def month_table(context,  room, month, size="regular", shift=None):
 	if shift:
 		if shift == -1:
 			month = month.prev()
@@ -21,15 +21,15 @@ def month_table(context,  calendar, month, size="regular", shift=None):
 		context['day_names']  = weekday_abbrs
 	else:
 		context['day_names']  = weekday_names
-	context['calendar'] = calendar
+	context['room'] = room
 	context['month'] = month
 	context['size'] = size
 	return context
 
 @register.inclusion_tag("schedule/_day_cell.html",  takes_context=True)
-def day_cell(context,  calendar, day, month, size="regular" ):
+def day_cell(context,  room, day, month, size="regular" ):
 	context.update({
-		'calendar' : calendar,
+		'room' : room,
 		'day' : day,
 		'month' : month,
 		'size' : size
@@ -65,14 +65,14 @@ def daily_table( context, day, width, width_slot, height, start=8, end=20, incre
 	context['height'] = height
 	return context
 
-@register.inclusion_tag("schedule/_event_title.html", takes_context=True)
+@register.inclusion_tag("schedule/_reservation_title.html", takes_context=True)
 def title(context, occurrence ):
 	context.update({
 		'occurrence' : occurrence,
 	})
 	return context
 
-@register.inclusion_tag("schedule/_event_options.html", takes_context=True)
+@register.inclusion_tag("schedule/_reservation_options.html", takes_context=True)
 def options(context, occurrence ):
 	context.update({
 		'occurrence' : occurrence,
@@ -80,42 +80,42 @@ def options(context, occurrence ):
 	})
 	context['view_occurrence'] = occurrence.get_absolute_url()
 	user = context['request'].user
-	if CHECK_PERMISSION_FUNC(occurrence.event, user):
+	if CHECK_PERMISSION_FUNC(occurrence.reservation, user):
 		context['edit_occurrence'] = occurrence.get_edit_url()
 		print context['edit_occurrence']
 		context['cancel_occurrence'] = occurrence.get_cancel_url()
-		context['delete_event'] = reverse('delete_event', args=(occurrence.event.id,))
-		context['edit_event'] = reverse('edit_event', args=(occurrence.event.calendar.slug, occurrence.event.id,))
+		context['delete_reservation'] = reverse('delete_reservation', args=(occurrence.reservation.id,))
+		context['edit_reservation'] = reverse('edit_reservation', args=(occurrence.reservation.room.slug, occurrence.reservation.id,))
 	else:
-		context['edit_event'] = context['delete_event'] = ''
+		context['edit_reservation'] = context['delete_reservation'] = ''
 	return context
 
-@register.inclusion_tag("schedule/_create_event_options.html", takes_context=True)
-def create_event_url(context, calendar, slot ):
+@register.inclusion_tag("schedule/_create_reservation_options.html", takes_context=True)
+def create_reservation_url(context, room, slot ):
 	context.update ( {
-		'calendar' : calendar,
+		'room' : room,
 		'MEDIA_URL' : getattr(settings, "MEDIA_URL"),
 	})
 	lookup_context = {
-		'calendar_slug': calendar.slug,
+		'room_slug': room.slug,
 	}
-	context['create_event_url'] ="%s%s" % (
-		reverse( "calendar_create_event", kwargs=lookup_context),
+	context['create_reservation_url'] ="%s%s" % (
+		reverse( "room_create_reservation", kwargs=lookup_context),
 		querystring_for_date(slot))
 	return context
 
-class CalendarNode(template.Node):
+class RoomNode(template.Node):
 	def __init__(self, content_object, distinction, context_var, create=False):
 		self.content_object = template.Variable(content_object)
 		self.distinction = distinction
 		self.context_var = context_var
 
 	def render(self, context):
-		calendar = Calendar.objects.get_calendar_for_object(self.content_object.resolve(context), self.distinction)
-		context[self.context_var] = Calendar.objects.get_calendar_for_object(self.content_object.resolve(context), self.distinction)
+		room = Room.objects.get_room_for_object(self.content_object.resolve(context), self.distinction)
+		context[self.context_var] = Room.objects.get_room_for_object(self.content_object.resolve(context), self.distinction)
 		return ''
 
-def do_get_calendar_for_object(parser, token):
+def do_get_room_for_object(parser, token):
 	contents = token.split_contents()
 	if len(contents) == 4:
 		tag_name, content_object, _, context_var = contents
@@ -124,9 +124,9 @@ def do_get_calendar_for_object(parser, token):
 		tag_name, content_object, distinction, _, context_var = token.split_contents()
 	else:
 		raise template.TemplateSyntaxError, "%r tag follows form %r <content_object> as <context_var>" % (token.contents.split()[0], token.contents.split()[0])
-	return CalendarNode(content_object, distinction, context_var)
+	return RoomNode(content_object, distinction, context_var)
 
-class CreateCalendarNode(template.Node):
+class CreateRoomNode(template.Node):
 	def __init__(self, content_object, distinction, context_var, name):
 		self.content_object = template.Variable(content_object)
 		self.distinction = distinction
@@ -134,10 +134,10 @@ class CreateCalendarNode(template.Node):
 		self.name = name
 
 	def render(self, context):
-		context[self.context_var] = Calendar.objects.get_or_create_calendar_for_object(self.content_object.resolve(context), self.distinction, name = self.name)
+		context[self.context_var] = Room.objects.get_or_create_room_for_object(self.content_object.resolve(context), self.distinction, name = self.name)
 		return ''
 
-def do_get_or_create_calendar_for_object(parser, token):
+def do_get_or_create_room_for_object(parser, token):
 	contents = token.split_contents()
 	if len(contents) > 2:
 		tag_name = contents[0]
@@ -158,13 +158,13 @@ def do_get_or_create_calendar_for_object(parser, token):
 			as_index = contents.index('as')
 			context_var = contents[as_index+1]
 		else:
-			raise template.TemplateSyntaxError, "%r tag requires an a context variable: %r <content_object> [named <calendar name>] [by <distinction>] as <context_var>" % (token.split_contents()[0], token.split_contents()[0])
+			raise template.TemplateSyntaxError, "%r tag requires an a context variable: %r <content_object> [named <room name>] [by <distinction>] as <context_var>" % (token.split_contents()[0], token.split_contents()[0])
 	else:
-		raise template.TemplateSyntaxError, "%r tag follows form %r <content_object> [named <calendar name>] [by <distinction>] as <context_var>" % (token.split_contents()[0], token.split_contents()[0])
-	return CreateCalendarNode(obj, distinction, context_var, name)
+		raise template.TemplateSyntaxError, "%r tag follows form %r <content_object> [named <room name>] [by <distinction>] as <context_var>" % (token.split_contents()[0], token.split_contents()[0])
+	return CreateRoomNode(obj, distinction, context_var, name)
 
-register.tag('get_calendar', do_get_calendar_for_object)
-register.tag('get_or_create_calendar', do_get_or_create_calendar_for_object)
+register.tag('get_room', do_get_room_for_object)
+register.tag('get_or_create_room', do_get_or_create_room_for_object)
 
 @register.simple_tag
 def querystring_for_date(date, num=6):
@@ -177,13 +177,13 @@ def querystring_for_date(date, num=6):
 @register.simple_tag
 def prev_url(target, slug, period):
 	return '%s%s' % (
-		reverse(target, kwargs=dict(calendar_slug=slug)),
+		reverse(target, kwargs=dict(room_slug=slug)),
 			querystring_for_date(period.prev().start))
 
 @register.simple_tag
 def next_url(target, slug, period):
 	return '%s%s' % (
-		reverse(target, kwargs=dict(calendar_slug=slug)),
+		reverse(target, kwargs=dict(room_slug=slug)),
 			querystring_for_date(period.next().start))
 
 @register.inclusion_tag("schedule/_prevnext.html")
@@ -293,4 +293,4 @@ def _cook_slots(period, increment, width, height):
 
 @register.simple_tag
 def hash_occurrence(occ):
-	return '%s_%s' % (occ.start.strftime('%Y%m%d%H%M%S'), occ.event.id)
+	return '%s_%s' % (occ.start.strftime('%Y%m%d%H%M%S'), occ.reservation.id)

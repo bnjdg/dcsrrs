@@ -1,10 +1,10 @@
 {% block user_actions %}
 
-<a href="{% url edit_event event.calendar.slug,event.id %}">
+<a href="{% url edit_reservation reservation.room.slug,reservation.id %}">
 			<img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="{% trans 'Change' %}"/>
 		  </a>
 		  &nbsp;
-		  <a href="{% url delete_event event.id %}">
+		  <a href="{% url delete_reservation reservation.id %}">
 			<img border="0" src="{{ MEDIA_URL }}schedule/img/delete.png" alt="{% trans 'Delete' %}"/>
 </a>
 
