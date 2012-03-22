@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block extra_meta %}
+	<meta http-equiv="refresh" content="10;url=/accounts/login">
+{% endblock %}
+
+{% block title %}Activation complete{% endblock %}
+
+{% block content %}
+
+<h1>Congratulations!</h1>
+<p>Your registration is now complete.</p>
+
+<p>You may now login at  <a href="/accounts/login/">Log In</a></p>
+
+<p>You will be automatically redirected to the Login Screen after 10 seconds. </p>
+
+{% endblock %}
