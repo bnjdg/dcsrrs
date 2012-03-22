@@ -238,15 +238,15 @@ img {
 	text-decoration: none;
 }
 
-
-#messages { 
+#messages_home { 
 	margin-bottom: 10px;
 	float: left;
-	padding: 0 5px 5px 5px;
+	padding: 0 10px 10px 10px;
+	margin-top: 10px;
 	position: relative;
 	text-align:left;
 	overflow:auto;
-}
+	}
 
 
 .datagrid table { border-collapse: collapse; text-align: left; width: 100%; } 
