@@ -91,7 +91,6 @@ Include "conf/extra/httpd-wsgi.conf"
 h2. httpd-wsgi.conf
 
 <pre>
-
 <Directory "/path/to/dcsrrs/">
   Order allow,deny
   Allow from all
@@ -104,12 +103,10 @@ h2. httpd-wsgi.conf
 
 WSGIScriptAlias / "/path/to/dcsrrs/apache/django.wsgi"
 
-
 Alias /dcsrrs/site_media/ "C:/dcsrrs/site_media/"
 
 <Directory "/path/to/dcsrrs/site_media>
 Order deny,allow
 Allow from all
 </Directory>
-
 </pre>
