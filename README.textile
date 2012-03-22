@@ -48,7 +48,8 @@ h3. Requirements
  * Django Registration: https://bitbucket.org/ubernostrum/django-registration
  * Django-decorator-include: https://github.com/jeffkistler/django-decorator-include/
  * Python-dateutil and voject
- 
+
+	** mod_wsgi - Apache WSGI Module for Deployment
 h2. Settings.py
 
 <pre>
