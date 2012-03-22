@@ -1,19 +1,22 @@
-<html>
-<head>
-    <title>Search by date</title>
-</head>
-<body>
-    {% if errors %}
+{% extends "base.html" %}
+{% load i18n %}
+{% load scheduletags %}
+
+{% block head_title %}Search by Date{% endblock %}
+
+{% block body %}
+
+{% if errors %}
         <ul>
             {% for error in errors %}
             <li>{{ error }}</li>
             {% endfor %}
         </ul>
     {% endif %}
-	<p>Enter date (yyyy-mm-dd):</p>
+	<strong><p>Enter date (yyyy-mm-dd):</p></strong>
     <form action="/search_by_date/" method="get">
         <input type="text" name="q">
         <input type="submit" value="Search">
     </form>
-</body>
-</html>
+	
+{% endblock %}

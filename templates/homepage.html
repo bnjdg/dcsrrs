@@ -1,18 +1,28 @@
 {% extends "site_base.html" %}
+	
+		{% block extra_meta %}
+		{% if user.is_authenticated %}
+			<meta http-equiv="refresh" content="0;url=/my_reservations">
+		{% endif %}
+			{% endblock %}
+
+
 
 {% load i18n %}
-
 {% block head_title %}{% trans "Welcome" %}{% endblock %}
 
 {% block tab_id %}id="home_tab"{% endblock %}
 
 {% block body %}
-    {% blocktrans %}
-        <h1>Room Reservation System.</h1>
+    {% if not user.is_authenticated %}
+	{% blocktrans %}
+        <h1>Welcome to Room Reservation System.</h1>
     {% endblocktrans %}
     {% blocktrans %}
-    <p>Dashboard to be placed here.</p>
-	<p>Meanwhile, use the links on the left for navigation.</p>
+    <p>Please <a href=/accounts/login>login</a>.</p>
+	<p>Use the links on the left for navigation.</p>
     {% endblocktrans %}
+	
+	{% endif %}
 
 {% endblock %}

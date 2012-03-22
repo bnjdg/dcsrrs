@@ -1,6 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load scheduletags %}
+
+{% block head_title %}Search Results{% endblock %}
+
+{% block body %}
+
 <p>You searched for: <strong>{{ query }}</strong></p>
 <p>Search results:</p>
-<table border =1>
+<div class="datagrid"><table>
+<thead>
 	<tr>
 		<th>Title</th>
 		<th>Start time</th>
@@ -9,20 +18,25 @@
 		<th>Creator</th>
 		<th>Created on</th>
 	</tr>
+</thead>
+<tbody>
 {% if events %}
-		{% for event in events %}
-	<tr>
-		<th>{{ event.title }}</th>
-		<th>{{ event.start }}</th>
-		<th>{{ event.end }}</th>
-		<th>{{ event.description }}</th>
-		<th>{{ event.creator }}</th>
-		<th>{{ event.created_on }}</th>
+	{% for event in events %}
+		<tr>
+		<td>{{ event.title }}</td>
+		<td>{{ event.start }}</td>
+		<td>{{ event.end }}</td>
+		<td>{{ event.description }}</td>
+		<td>{{ event.creator }}</td>
+		<td>{{ event.created_on }}</td>
 	</tr>
 		{% endfor %}
 {% else %}
 	<tr>
-		<th colspan=6 align=center>No reservations found.</th>
+		<th colspan=6 align=center>No reservations found.</td>
 	</tr>
 {% endif %}
+</tbody>
 </table>
+
+{% endblock %}
