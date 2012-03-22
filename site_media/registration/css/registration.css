@@ -60,8 +60,10 @@ img {
 }
 
 #header {
+	position: relative;
 	background: #FE7B09 url(img/bg.jpg) repeat-x;
 	height: 97px;
+	width:100%;
 }
 
 #header
@@ -182,7 +184,7 @@ img {
 	background: #FFD8AF;
 	margin-bottom: 10px;
 	overflow:hidden;
-	margin-top: 20px;
+	margin-top: 10px;
 	border: 1px dotted #FF8B1E;
 	position:relative;
 }
@@ -200,6 +202,10 @@ img {
 	position: relative;
 	text-align:left;
 
+}
+
+#body{
+	position:relative;
 }
 	
 #footer {
