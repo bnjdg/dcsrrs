@@ -121,7 +121,7 @@ h2. httpd-wsgi.conf
 
 WSGIScriptAlias / "/path/to/dcsrrs/apache/django.wsgi"
 
-Alias /dcsrrs/site_media/ "C:/dcsrrs/site_media/"
+Alias /dcsrrs/site_media/ "/path/to/dcsrrs/site_media/"
 
 <Directory "/path/to/dcsrrs/site_media>
 Order deny,allow
