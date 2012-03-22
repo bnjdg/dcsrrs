@@ -35,22 +35,13 @@
 
 <div id="wrap">
 
-
 <div id="header">
-<div id="logo"></div>
-<div id="branding">
-<h1><a href="">Room Reservation System for DCS</a></h1>
+<div id="logo">
 </div>
-{% if user.is_authenticated %}
-<div id="usertools">
-<h2>
-{% trans '   You are logged in as ' %} <strong> {% filter force_escape %}{% firstof user.username %}{% endfilter %} </strong>
- / <a href="/password_change"> {% trans 'Change password' %}</a> / <a href="/accounts/logout">Logout</a> </h2>
+<div>
+<h1><a href="#">Room Reservation System</a></h1>
 </div>
-{% endif %}
 </div>
-
-
 
 <div id="right">
 
@@ -77,12 +68,12 @@
 <li><a href="/">Reservations</a></li> 
 <li><a href="/">Reserve Room</a></li> 
 <li><a href="/schedule/">View Rooms</a></li> 
-<li><a href="/search_by_room">Search by Room</a></li> 
 <li><a href="/accounts/logout">Logout</a></li>
 </ul>
 {% else %}
 <ul>
-    <li><a href="/login">Login</a></li>
+    <li><a href="/accounts/login">Login</a></li>
+	<li><a href="/accounts/register">Register</a></li>
 	<li><a href="/admin">Administration</a></li>
 </ul>
 {% endif %}

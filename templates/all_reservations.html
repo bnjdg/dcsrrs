@@ -1,0 +1,29 @@
+<p><strong>All Reservations</strong></p>
+<table border =1>
+	<tr>
+		<th>Room</th>
+		<th>Title</th>
+		<th>Start time</th>
+		<th>End time</th>
+		<th>Description</th>
+		<th>Creator</th>
+		<th>Created on</th>
+	</tr>
+{% if reservations %}
+		{% for reservation in reservations %}
+	<tr>
+		<th>{{ reservation.calendar.name }}</th>
+		<th>{{ reservation.title }}</th>
+		<th>{{ reservation.start }}</th>
+		<th>{{ reservation.end }}</th>
+		<th>{{ reservation.description }}</th>
+		<th>{{ reservation.creator }}</th>
+		<th>{{ reservation.created_on }}</th>
+	</tr>
+		{% endfor %}
+{% else %}
+	<tr>
+		<th colspan=7 align=center>No reservations.</th>
+	</tr>
+{% endif %}
+</table>

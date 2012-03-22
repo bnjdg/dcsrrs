@@ -1,0 +1,31 @@
+<p><strong>My Reservations</strong></p>
+<table border =1>
+	<tr>
+		<th>Title</th>
+		<th>Start time</th>
+		<th>End time</th>
+		<th>Description</th>
+		<th>Creator</th>
+		<th>Created on</th>
+		<th>Action</th>
+	</tr>
+{% if reservations %}
+		{% for reservation in reservations %}
+	<tr>
+		<th>{{ reservation.title }}</th>
+		<th>{{ reservation.start }}</th>
+		<th>{{ reservation.end }}</th>
+		<th>{{ reservation.description }}</th>
+		<th>{{ reservation.creator }}</th>
+		<th>{{ reservation.created_on }}</th>
+		<th>
+			<a href="{% url delete_event reservation.id %}">Cancel</a>
+		</th>
+	</tr>
+		{% endfor %}
+{% else %}
+	<tr>
+		<th colspan=6 align=center>No reservations.</th>
+	</tr>
+{% endif %}
+</table>
