@@ -15,8 +15,10 @@
 	{% if back_url %}
 	<a href="{{ back_url }}"><img border="0" src="{{ MEDIA_URL }}schedule/img/left_mod.png" alt="{% trans "Back" %}"></a> &nbsp;
 	{% endif %}
+	{% ifequal occurrence.event.creator request.user %}
 	<a href="{{occurrence.get_edit_url}}"><img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="{% trans "Change" %}"></a> &nbsp;
 	<a href="{{occurrence.get_cancel_url}}"><img border="0" src="{{ MEDIA_URL }}schedule/img/delete.png" alt="{% trans "Cancel" %}"></a>
+	{% endifequal %}
 </div>
 <h2 align="center">{{occurrence.title}}</h2>
 <table align="center">
@@ -27,6 +29,14 @@
 <tr>
 <td>Ends</td>
 <td>{% blocktrans with occurrence.end|date:_("DATETIME_FORMAT") as end_date %}{{ end_date }}{% endblocktrans %}</td>
+</tr>
+<tr>
+<td>Creator</td>
+<td>{% blocktrans with occurrence.creator as creator %}{{ creator }}{% endblocktrans %}</td>
+</tr>
+<tr>
+<td>Created on</td>
+<td>{% blocktrans with occurrence.created_on as created_on %}{{ created_on }}{% endblocktrans %}</td>
 </tr>
 {% if occurrence.event.rule %}
 <tr>

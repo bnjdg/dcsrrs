@@ -23,6 +23,7 @@
   </a>
   &nbsp;
   {% endif %}
+  {% ifequal event.creator request.user %}
   <a href="{% url edit_event event.calendar.slug,event.id %}">
     <img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="{% trans "Change" %}"/>
   </a>
@@ -30,6 +31,7 @@
   <a href="{% url delete_event event.id %}">
     <img border="0" src="{{ MEDIA_URL }}schedule/img/delete.png" alt="{% trans "Delete" %}"/>
   </a>
+  {% endifequal %}
 </div>
 <h2 align="center">{{event.title}}</h2>
 <table align="center">
@@ -40,6 +42,14 @@
 <tr>
 <td>Ends</td>
 <td>{% blocktrans with event.end|date:_("DATETIME_FORMAT") as end_date %}{{ end_date }}{% endblocktrans %}</td>
+</tr>
+<tr>
+<td>Creator</td>
+<td>{% blocktrans with event.creator as creator %}{{ creator }}{% endblocktrans %}</td>
+</tr>
+<tr>
+<td>Created on</td>
+<td>{% blocktrans with event.created_on as created_on %}{{ created_on }}{% endblocktrans %}</td>
 </tr>
 <tr>
 <td>Reoccurs</td>

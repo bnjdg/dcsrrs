@@ -46,7 +46,6 @@ ul {
 	margin: 0 0 10px;
 }
 li { 
-	COLOR: #FF7A09; 
 	list-style-type: none;
 }
 
@@ -60,7 +59,12 @@ img {
 
 #header {
 	background: #FE7B09 url(img/bg.jpg) repeat-x;
-	height: 97px;
+	height: 100px;
+}
+
+#header logo {
+	height: 100px;
+	width: 100px;
 }
 
 #header
@@ -80,90 +84,12 @@ img {
 	text-decoration: none;
 }
 #header h2 {
-	color: #fff;
+	color: #eee;
 	font-size: 19px;
 	font-weight: 100;
 	padding: 0 0 0 11px;
 	letter-spacing: -1px;
 	line-height: 12px;
-}
-
-#header h2 a {
-	color: #fff;
-	text-decoration: none;
-}
-#header h2 a:hover {
-	color: #000;
-	text-decoration: none;
-}
-
-#logo {
-	background: #FE7B09 url(../../img/DCSLogo.jpg) no-repeat;
-	position:absolute;
-	height: 97px;
-	width: 100px;
-}
-
-#usertools {
-	position: relative;
-	text-align:left;
-	margin-left:120px;
-}
-
-#usertools h2 {
-	color: #fff;
-	font-size: 19px;
-	font-weight: 100;
-	padding: 0 0 0 11px;
-	letter-spacing: -1px;
-	line-height: 12px;
-}
-
-#usertools h2 a {
-	color: #fff;
-	text-decoration: none;
-}
-
-#usertools h2 a:hover {
-	color: #000;
-	text-decoration: none;
-}
-
-#branding {
-	position: relative;
-	margin-left:100px;
-}
-
-#branding h1 {
-	font-size: 30px;
-	font-weight: 100;
-	letter-spacing: -1px;
-	padding: 22px 0 5px 10px;
-}
-#branding h1 a {
-	color: #fff;
-	text-decoration: none;
-}
-#branding h1 a:hover {
-	color: #000;
-	text-decoration: none;
-}
-#branding h2 {
-	color: #fff;
-	font-size: 19px;
-	font-weight: 100;
-	padding: 0 0 0 11px;
-	letter-spacing: -1px;
-	line-height: 12px;
-}
-
-#branding h2 a {
-	color: #fff;
-	text-decoration: none;
-}
-#branding h2 a:hover {
-	color: #000;
-	text-decoration: none;
 }
 
 #wrap {
@@ -207,10 +133,3 @@ img {
 	border-top: 1px solid #ccc;
 	padding: 10px 5px;
 }
-
-.datagrid table { border-collapse: collapse; text-align: left; width: 100%; } 
-.datagrid {font: normal 12px/150% Verdana, Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #FF5500; -webkit-border-radius: 1px; -moz-border-radius: 1px; border-radius: 1px; }
-.datagrid table td, .datagrid table th { padding: 2px 0px; }
-.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #FF8000), color-stop(1, #A14B00) );background:-moz-linear-gradient( center top, #FF8000 5%, #A14B00 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF8000', endColorstr='#A14B00');background-color:#FF8000; color:#FCFFE6; font-size: 12px; font-weight: bold; } 
-.datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #00496B; border-left: 1px solid #F49B02;font-size: 12px;font-weight: normal; }.datagrid table tbody .alt td { background: #F4E7A3; color: #00496B; }
-.datagrid table tbody td:first-child { border: none; }

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load scheduletags %}
+{% block head_title %}Reserve Rooms{% endblock %}
+
+
+{% block body %}
+
+<h2>Available Rooms</h2>
+<ul>
+{% for cal in rooms %}
+<li>  <a href="{% url calendar_create_event cal.slug %}"> <b>{{ cal.name }}</b> </a></li><br/>
+{% endfor %}
+</ul>
+
+{% endblock %}

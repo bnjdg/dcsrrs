@@ -1,16 +1,5 @@
-{% extends "base.html" %}
-{% load i18n %}
-{% load scheduletags %}
-
-{% block head_title %}My Reservations{% endblock %}
-
-{% block body %}
-
-
-
 <p><strong>My Reservations</strong></p>
-<div class="datagrid"><table>
-<thead>
+<table border =1>
 	<tr>
 		<th>Title</th>
 		<th>Start time</th>
@@ -20,20 +9,18 @@
 		<th>Created on</th>
 		<th>Action</th>
 	</tr>
-</thead>
-<tbody>
 {% if reservations %}
 		{% for reservation in reservations %}
 	<tr>
-		<td>{{ reservation.title }}</td>
-		<td>{{ reservation.start }}</td>
-		<td>{{ reservation.end }}</td>
-		<td>{{ reservation.description }}</td>
-		<td>{{ reservation.creator }}</td>
-		<td>{{ reservation.created_on }}</td>
-		<td>
+		<th>{{ reservation.title }}</th>
+		<th>{{ reservation.start }}</th>
+		<th>{{ reservation.end }}</th>
+		<th>{{ reservation.description }}</th>
+		<th>{{ reservation.creator }}</th>
+		<th>{{ reservation.created_on }}</th>
+		<th>
 			<a href="{% url delete_event reservation.id %}">Cancel</a>
-		</td>
+		</th>
 	</tr>
 		{% endfor %}
 {% else %}
@@ -41,7 +28,4 @@
 		<th colspan=7 align=center>No reservations.</th>
 	</tr>
 {% endif %}
-</tbody>
 </table>
-</div>
- {% endblock %}

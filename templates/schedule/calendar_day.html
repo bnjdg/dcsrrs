@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load scheduletags %}
-{% block head_title %}{{calendar.name}}{% endblock %}
+
 {% block extra_head %}
     {{ block.super }}
     {% include "schedule/_dialogs.html" %}
@@ -24,11 +24,11 @@
 </div>
 <div style="position:relative;">
     <div style="position:relative;left:100px;">
-      {% daily_table periods.day 420 150 500 5 12 %}
+      {% daily_table periods.day 420 150 500 0 12 %}
     </div>
 
     <div style="position:relative;left:100px">
-      {% daily_table periods.day 420 150 500 12 20 %}
+      {% daily_table periods.day 420 150 500 12 24 %}
     </div>
 </div>
 

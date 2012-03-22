@@ -26,7 +26,7 @@
                 <a href="{% url event event.pk %}" title="{% trans "Event details" %} {{ event }}">
                     <img src="{{ settings.MEDIA_URL }}icons/time_go.png" alt="{% trans "Event details" %}" />
                 </a>
-                {% ifequal request.user other_user %}
+                {% ifequal request.user event.creator %}
                 <a href="{% url edit_event calendar.slug event.pk %}" title="{% trans "Edit event" %} {{ event }}">
                     <img src="{{ settings.MEDIA_URL }}icons/time_edit.png" alt="{% trans "Edit event" %}" />
                 </a>

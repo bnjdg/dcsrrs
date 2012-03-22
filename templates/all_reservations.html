@@ -1,14 +1,5 @@
-{% extends "base.html" %}
-{% load i18n %}
-{% load scheduletags %}
-
-{% block head_title %}All Reservations{% endblock %}
-
-{% block body %}
-
 <p><strong>All Reservations</strong></p>
-<div class="datagrid"><table>
-<thead>
+<table border =1>
 	<tr>
 		<th>Room</th>
 		<th>Title</th>
@@ -18,26 +9,21 @@
 		<th>Creator</th>
 		<th>Created on</th>
 	</tr>
-</thead>
-<tbody>
 {% if reservations %}
 		{% for reservation in reservations %}
 	<tr>
-		<td>{{ reservation.calendar.name }}</td>
-		<td>{{ reservation.title }}</td>
-		<td>{{ reservation.start }}</td>
-		<td>{{ reservation.end }}</td>
-		<td>{{ reservation.description }}</td>
-		<td>{{ reservation.creator }}</td>
-		<td>{{ reservation.created_on }}</td>
+		<th>{{ reservation.calendar.name }}</th>
+		<th>{{ reservation.title }}</th>
+		<th>{{ reservation.start }}</th>
+		<th>{{ reservation.end }}</th>
+		<th>{{ reservation.description }}</th>
+		<th>{{ reservation.creator }}</th>
+		<th>{{ reservation.created_on }}</th>
 	</tr>
 		{% endfor %}
 {% else %}
 	<tr>
-		<th colspan=7 align=center>No reservations.</td>
+		<th colspan=7 align=center>No reservations.</th>
 	</tr>
 {% endif %}
-</tbody>
 </table>
-
-{% endblock %}

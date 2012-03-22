@@ -82,8 +82,8 @@ div.type2 {
 /**** EVENT DETAIL DIALOG ****/
 
 div.detail tr {vertical-align:top;}
-div.detail td {COLOR: #FFF;}
-div.detail td.left {font-weight:bold;COLOR: #FFF;}
+
+div.detail td.left {font-weight:bold;}
 
 div.event_options div.title {
   float:left;
@@ -122,8 +122,7 @@ table.calendar td {
 
 table.calendar td.daynumber {
 	font-size: 10pt;
-	vertical-align: top;
-	text-align:left;
+	vertical-align: top
 }
 
 table.calendar td.noday {
