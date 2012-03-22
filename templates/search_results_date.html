@@ -33,7 +33,7 @@
 		<td>{{ event.creator }}</td>
 		<td>{{ event.created_on }}</td>
 		 <td>
-		 {% ifequal event.creator request.user %}
+		  {% ifequal event.creator request.user %}
 		  <a href="{% url edit_event event.calendar.slug,event.id %}">
 			<img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="{% trans "Change" %}"/>
 		  </a>
@@ -41,13 +41,23 @@
 		  <a href="{% url delete_event event.id %}">
 			<img border="0" src="{{ MEDIA_URL }}schedule/img/delete.png" alt="{% trans "Delete" %}"/>
 		  </a>
+		  {% else %}
+		  {% if user.is_staff %}
+		    <a href="{% url edit_event event.calendar.slug,event.id %}">
+			<img border="0" src="{{ MEDIA_URL }}schedule/img/pencil.png" alt="{% trans "Change" %}"/>
+		  </a>
+		  &nbsp;
+		  <a href="{% url delete_event event.id %}">
+			<img border="0" src="{{ MEDIA_URL }}schedule/img/delete.png" alt="{% trans "Delete" %}"/>
+		  </a>
+		  {% endif %}
 		  {% endifequal %}
 		  </td>
 	</tr>
 		{% endfor %}
 {% else %}
 	<tr>
-		<th colspan==7 align=center>No reservations found.</td>
+		<th colspan=8 align=center>No reservations found.</th>
 	</tr>
 {% endif %}
 </tbody>

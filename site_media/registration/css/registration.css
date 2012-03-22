@@ -107,7 +107,7 @@ img {
 #usertools {
 	position: relative;
 	text-align:left;
-	margin-left:120px;
+	margin-left:100px;
 }
 
 #usertools h2 {
@@ -194,7 +194,7 @@ img {
 	float: center;
 	padding: 0 10px 10px 10px;
 	margin-top: 10px;
-	margin-left: 180px;
+	margin-left: 150px;
 	position: relative;
 	text-align:left;
 	overflow:auto;

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load scheduletags %}
+{% block head_title %}{{calendar.name}}{% endblock %}
+
+{% block extra_head %}
+    {{ block.super }}
+    {% include "schedule/_dialogs.html" %}
+{% endblock %}
+
+{% block body %}
+<div class="tablewrapper">
+  <div class="calendarname">{{ calendar.name }}</div>
+  
+  {% prevnext "month_calendar" calendar.slug periods.month "F Y"%}
+  <div class="now">
+    <a href="{% url month_calendar calendar.slug %}">
+      This month
+    </a>
+  </div>
+  {% month_table calendar periods.month "regular" %}
+</div>
+{% endblock %}

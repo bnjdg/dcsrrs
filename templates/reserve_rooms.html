@@ -9,7 +9,7 @@
 <h2>Available Rooms</h2>
 <ul>
 {% for cal in rooms %}
-<li>  <a href="{% url calendar_create_event cal.slug %}"> <b>{{ cal.name }}</b> </a></li><br/>
+<li>  <a href="{% url calendar_create_event cal.slug %}?next=/reserve_rooms"> <b>{{ cal.name }}</b> </a></li><br/>
 {% endfor %}
 </ul>
 

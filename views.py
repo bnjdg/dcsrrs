@@ -17,10 +17,11 @@ from schedule.utils import check_event_permissions, coerce_date_dict
 import datetime
 import time
 
-from dcsrrs import forms
+from dcsrrs.forms import SearchDateForm, SearchRoomForm
 
 def create_or_edit_event(request, calendar_slug, event_id=None, next=None,
     template_name='schedule/create_event.html', form_class = EventForm, extra_context=None):
+    errors = []
     extra_context = extra_context or {}
     date = coerce_date_dict(request.GET)
     initial_data = None
@@ -51,21 +52,37 @@ def create_or_edit_event(request, calendar_slug, event_id=None, next=None,
         d = form.cleaned_data
         start_time = d['start']
         end_time = d['end']
-
+        
         start_conflict = calendar.event_set.filter(start__gt=start_time, start__lt=end_time).exclude(id=event_id)
         end_conflict = calendar.event_set.filter(end__gt=start_time, end__lt=end_time).exclude(id=event_id)
         during_conflict = calendar.event_set.filter(start__lt=start_time, end__gt=end_time).exclude(id=event_id)
-        start_end_conflict = calendar.event_set.filter(start=start_time, end=end_time)
+        start_end_conflict = calendar.event_set.filter(start=start_time, end=end_time).exclude(id=event_id)
 
         if(start_conflict or end_conflict or during_conflict or start_end_conflict):
             conflict = True
 
         now = datetime.datetime.now()
         if(start_time < now):
-            return render_to_response('restrict_reserve.html', context_instance=RequestContext(request))
+			errors.append('Reservations can only be made for future dates.')
+			next = get_next_url(request, next)
+			context = {
+				"form": form,
+				"calendar": calendar,
+				"next":next,
+				"errors":errors,
+				}
+			return render_to_response(template_name, context, context_instance=RequestContext(request))
 
         if(conflict):
-            return render_to_response('schedule_conflict.html', context_instance=RequestContext(request))
+			errors.append('Reservation cannot be granted. There is a conflict in schedule. Please try again')
+			next = get_next_url(request, next)
+			context = {
+				"form": form,
+				"calendar": calendar,
+				"next":next,
+				"errors":errors,
+				}
+			return render_to_response(template_name, context, context_instance=RequestContext(request))
         else:
             event = form.save(commit=False)
             if instance is None:
@@ -101,8 +118,11 @@ def delete_event(request, event_id, next=None, login_required=True, extra_contex
     next = next or reverse('day_calendar', args=[event.calendar.slug])
     next = get_next_url(request, next)
     extra_context['next'] = next
-    if event.creator == request.user:
+    u = request.user
+    if event.creator == u:
         return delete_object(request, model = Event, object_id = event_id, post_delete_redirect = next, template_name = "schedule/delete_event.html", extra_context = extra_context, login_required = login_required)
+    elif u.is_staff or u.is_superuser:
+            return delete_object(request, model = Event, object_id = event_id, post_delete_redirect = next, template_name = "schedule/delete_event.html", extra_context = extra_context, login_required = login_required)
     else:
         return render_to_response('cannot_delete.html')
 
@@ -179,7 +199,9 @@ def all_reservations(request):
 		
 @login_required
 def reserve_rooms(request):
+	next = request.META.get('HTTP_REFERER', '/reserve_rooms')
+	next = get_next_url(request, next)
 	rooms = Calendar.objects.all()
 	return render_to_response('reserve_rooms.html',
-		{'rooms': rooms},
+		{'rooms': rooms, 'next':next},
 		context_instance=RequestContext(request))

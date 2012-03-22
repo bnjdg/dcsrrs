@@ -125,6 +125,7 @@ ul li {
     padding: 1px 0;
 }
 
+
 ul.plainlist {
     margin-left: 0 !important;
 }
@@ -841,7 +842,7 @@ table#change-history tbody th {
 #user-tools {
 	position: relative;
 	text-align:left;
-	margin-left:120px;
+	margin-left:100px;
 }
 
 #user-tools h2 {
@@ -904,6 +905,58 @@ table#change-history tbody th {
 #branding h2 a:hover {
 	color: #000;
 	text-decoration: none;
+}
+
+#left { 
+	padding: 0 0 0 0;
+	float: left;
+	width: 150px;
+	background: #FFD8AF;
+	margin-bottom: 10px;
+	overflow:hidden;
+	margin-top: 20px;
+	border: 1px dotted #FF8B1E;
+	position:absolute;
+	font-size: 14px;
+	line-height: 24px;
+}
+
+#left ul {
+	padding: 5px 10px 10px 10px;
+	margin: 0;
+}
+
+#left ul li { 
+	COLOR: #FF7A09; 
+	list-style-type: none;
+}
+
+#left h3 { 
+	padding-left: 10px;
+	color: #fff;
+	background: #FE7B09 url(img/bg.jpg) repeat-x; 
+	font-size: 14px;
+	height: 24px; 
+	line-height: 24px; 
+}
+
+#left a { 
+	color: ##FF7A09; 
+	font-size: 14px;
+	line-height: 18px; 
+}
+
+
+#right {
+	margin-bottom: 10px;
+	float: center;
+	padding: 0 10px 10px 10px;
+	margin-top: 10px;
+	margin-left: 150px;
+	position: relative;
+	text-align:left;
+	overflow:auto;
+	height:95%;
 }
 
 

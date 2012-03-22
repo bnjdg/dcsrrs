@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block head_title %}Rooms Available for Reservation{% endblock %}
+{% block body %}
+<h2>Available Rooms</h2>
+<ul>
+{% for cal in object_list %}
+<li>  <a href="{% url month_calendar cal.slug %}"> <b>{{ cal }}</b> </a></li><br/>
+{% endfor %}
+</ul>
+{% endblock %}

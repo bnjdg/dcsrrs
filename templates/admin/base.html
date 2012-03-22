@@ -54,7 +54,28 @@
         {% endif %}
         {% block nav-global %}{% endblock %}
     </div>
+
     <!-- END Header -->
+    
+    <!-- Content -->
+{% if user.is_staff or user.is_superuser %}
+<div id="left">
+<h3>Dashboard</h3>
+<ul>
+<li><a href="/admin">Administration</a></li>
+<li><a href="/my_reservations">My Reservations</a></li>
+<li><a href="/all_reservations">All Reservations</a></li> 
+<li>Search:</li>
+<li><a href="/search_by_date">&nbsp&nbsp&nbsp&nbspby date</a></li> 
+<li><a href="/search_by_room">&nbsp&nbsp&nbsp&nbspby Room</a></li> 
+<li><a href="/reserve_rooms">Reserve Room</a></li> 
+<li><a href="/schedule/">View Rooms</a></li>
+<li><a href="/accounts/logout">Logout</a></li>
+</ul>
+
+</div>
+<div id="right">
+{% endif %}
     {% block breadcrumbs %}<div class="breadcrumbs"><a href="/">{% trans 'Home' %}</a>{% if title %} &rsaquo; {{ title }}{% endif %}</div>{% endblock %}
     {% endif %}
 
@@ -64,8 +85,7 @@
 	{% endfor %}</ul>
         {% endif %}
 
-    <!-- Content -->
-    <div id="content" class="{% block coltype %}colM{% endblock %}">
+	<div id="content" class="{% block coltype %}colM{% endblock %}">
         {% block pretitle %}{% endblock %}
         {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
         {% block content %}
@@ -76,7 +96,10 @@
         <br class="clear" />
     </div>
     <!-- END Content -->
-
+	
+{% if user.is_staff or user.is_superuser%}
+</div>
+{% endif %}
     {% block footer %}<div id="footer"></div>{% endblock %}
 </div>
 <!-- END Container -->

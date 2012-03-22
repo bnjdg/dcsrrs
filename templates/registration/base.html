@@ -44,12 +44,23 @@
 <div id="branding">
 <h1><a href="">Room Reservation System for DCS</a></h1>
 </div>
+{% if user.is_staff or user.is_superuser %}
+<div id="usertools">
+<h2>
+{% trans '   You are logged in as ' %} <strong> {% filter force_escape %}{% firstof user.username %}{% endfilter %}. </strong>
+ <a href="/admin"> {% trans 'Go to Admin' %}</a> /
+ <a href="/password_change"> {% trans 'Change password' %}</a> /
+ <a href="/accounts/logout">Logout</a> </h2>
+</div>
+{% else %}
 {% if user.is_authenticated %}
 <div id="usertools">
 <h2>
 {% trans '   You are logged in as ' %} <strong> {% filter force_escape %}{% firstof user.username %}{% endfilter %} </strong>
- / <a href="/password_change"> {% trans 'Change password' %}</a> / <a href="/accounts/logout">Logout</a> </h2>
+ / <a href="/password_change"> {% trans 'Change password' %}</a> / <a href="/accounts/logout">Logout</a>
+ </h2>
 </div>
+{% endif %}
 {% endif %}
 </div>
 
