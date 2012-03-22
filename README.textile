@@ -50,6 +50,7 @@ h3. Requirements
  * Python-dateutil and voject
  
 h2. Settings.py
+
 <pre>
 DATABASES = {
 		'default': {
@@ -61,12 +62,14 @@ DATABASES = {
 			'PORT': '<database server port>',		  # Set to empty string for default. Not used with sqlite3.
 			}
 		}
-
+</pre>
+<pre>
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = '/site_media/'    # must match with your server's configuration
-
+</pre>
+<pre>
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
@@ -78,7 +81,8 @@ h2. APACHE's httpd.conf
 #ADD TO HTTPD.CONF
 #Add after the last LoadModule line
 LoadModule wsgi_module modules/mod_wsgi.so
-
+</pre>
+<pre>
 #Add to the end of the conf file
 #It should path/to/http-wsgi.conf
 Include "conf/extra/httpd-wsgi.conf"
