@@ -41,7 +41,7 @@ h2. Technologies Used
 
 h3. Requirements 
 
- * Python 2.7.2 (could be different)
+ * Python 2.7.2 (could be different version, not tested on lower versions)
  * Django 1.3.1
  * MySQL Server (could be changed via settings.py)
  * Django-schedule-rooms: https://github.com/bjdag1234/django-schedule-rooms
@@ -52,7 +52,18 @@ h3. Requirements
 	** mod_wsgi - Apache WSGI Module for Deployment
 	
 h2. Sample MySQL Database 
-	/server/dcsrrs.sql
+	/server/dcsrrs_example.sql
+	
+	Group: user, pass 
+		Administrator: admin, admin
+		Staff: staff, staff
+		Users: user1, user1 ; user2, user2
+	
+	Rooms as specified during deliberation.
+	
+	No reservations
+	No admin logs
+	
 	
 h1. Installation
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 21, 2012 at 07:35 AM
+-- Generation Time: Mar 22, 2012 at 06:42 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `dcsrrs`
+-- Database: `dcsrrs_prod2`
 --
 
 -- --------------------------------------------------------
@@ -31,7 +31,16 @@ CREATE TABLE IF NOT EXISTS `auth_group` (
   `name` varchar(80) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `auth_group`
+--
+
+INSERT INTO `auth_group` (`id`, `name`) VALUES
+(3, 'Admins'),
+(1, 'Staff'),
+(2, 'Users');
 
 -- --------------------------------------------------------
 
@@ -47,7 +56,102 @@ CREATE TABLE IF NOT EXISTS `auth_group_permissions` (
   UNIQUE KEY `group_id` (`group_id`,`permission_id`),
   KEY `auth_group_permissions_425ae3c4` (`group_id`),
   KEY `auth_group_permissions_1e014c8f` (`permission_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=169 ;
+
+--
+-- Dumping data for table `auth_group_permissions`
+--
+
+INSERT INTO `auth_group_permissions` (`id`, `group_id`, `permission_id`) VALUES
+(139, 1, 7),
+(140, 1, 8),
+(141, 1, 9),
+(142, 1, 10),
+(143, 1, 11),
+(144, 1, 12),
+(145, 1, 13),
+(146, 1, 14),
+(147, 1, 15),
+(148, 1, 22),
+(149, 1, 23),
+(150, 1, 24),
+(151, 1, 25),
+(152, 1, 26),
+(153, 1, 27),
+(154, 1, 28),
+(155, 1, 29),
+(156, 1, 30),
+(157, 1, 31),
+(158, 1, 32),
+(159, 1, 33),
+(160, 1, 34),
+(161, 1, 35),
+(162, 1, 36),
+(163, 1, 37),
+(164, 1, 38),
+(165, 1, 39),
+(166, 1, 40),
+(167, 1, 41),
+(168, 1, 42),
+(132, 2, 10),
+(133, 2, 12),
+(134, 2, 13),
+(135, 2, 14),
+(136, 2, 15),
+(138, 2, 31),
+(125, 2, 32),
+(126, 2, 33),
+(127, 2, 34),
+(128, 2, 35),
+(129, 2, 36),
+(130, 2, 40),
+(131, 2, 41),
+(137, 2, 42),
+(52, 3, 1),
+(53, 3, 2),
+(54, 3, 3),
+(55, 3, 4),
+(56, 3, 5),
+(57, 3, 6),
+(58, 3, 7),
+(59, 3, 8),
+(60, 3, 9),
+(61, 3, 10),
+(62, 3, 11),
+(63, 3, 12),
+(64, 3, 13),
+(65, 3, 14),
+(66, 3, 15),
+(67, 3, 16),
+(68, 3, 17),
+(69, 3, 18),
+(70, 3, 19),
+(71, 3, 20),
+(72, 3, 21),
+(73, 3, 22),
+(74, 3, 23),
+(75, 3, 24),
+(76, 3, 25),
+(77, 3, 26),
+(78, 3, 27),
+(79, 3, 28),
+(80, 3, 29),
+(81, 3, 30),
+(82, 3, 31),
+(83, 3, 32),
+(84, 3, 33),
+(85, 3, 34),
+(86, 3, 35),
+(87, 3, 36),
+(88, 3, 37),
+(89, 3, 38),
+(90, 3, 39),
+(91, 3, 40),
+(92, 3, 41),
+(93, 3, 42),
+(94, 3, 43),
+(95, 3, 44),
+(96, 3, 45);
 
 -- --------------------------------------------------------
 
@@ -61,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `auth_message` (
   `message` longtext NOT NULL,
   PRIMARY KEY (`id`),
   KEY `auth_message_403f60f` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 -- --------------------------------------------------------
 
@@ -108,21 +212,21 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (22, 'Can add log entry', 8, 'add_logentry'),
 (23, 'Can change log entry', 8, 'change_logentry'),
 (24, 'Can delete log entry', 8, 'delete_logentry'),
-(25, 'Can add calendar', 9, 'add_calendar'),
-(26, 'Can change calendar', 9, 'change_calendar'),
-(27, 'Can delete calendar', 9, 'delete_calendar'),
-(28, 'Can add calendar relation', 10, 'add_calendarrelation'),
-(29, 'Can change calendar relation', 10, 'change_calendarrelation'),
-(30, 'Can delete calendar relation', 10, 'delete_calendarrelation'),
+(25, 'Can add room', 9, 'add_room'),
+(26, 'Can change room', 9, 'change_room'),
+(27, 'Can delete room', 9, 'delete_room'),
+(28, 'Can add room relation', 10, 'add_roomrelation'),
+(29, 'Can change room relation', 10, 'change_roomrelation'),
+(30, 'Can delete room relation', 10, 'delete_roomrelation'),
 (31, 'Can add rule', 11, 'add_rule'),
 (32, 'Can change rule', 11, 'change_rule'),
 (33, 'Can delete rule', 11, 'delete_rule'),
-(34, 'Can add event', 12, 'add_event'),
-(35, 'Can change event', 12, 'change_event'),
-(36, 'Can delete event', 12, 'delete_event'),
-(37, 'Can add event relation', 13, 'add_eventrelation'),
-(38, 'Can change event relation', 13, 'change_eventrelation'),
-(39, 'Can delete event relation', 13, 'delete_eventrelation'),
+(34, 'Can add reservation', 12, 'add_reservation'),
+(35, 'Can change reservation', 12, 'change_reservation'),
+(36, 'Can delete reservation', 12, 'delete_reservation'),
+(37, 'Can add reservation relation', 13, 'add_reservationrelation'),
+(38, 'Can change reservation relation', 13, 'change_reservationrelation'),
+(39, 'Can delete reservation relation', 13, 'delete_reservationrelation'),
 (40, 'Can add occurrence', 14, 'add_occurrence'),
 (41, 'Can change occurrence', 14, 'change_occurrence'),
 (42, 'Can delete occurrence', 14, 'delete_occurrence'),
@@ -150,18 +254,17 @@ CREATE TABLE IF NOT EXISTS `auth_user` (
   `date_joined` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `auth_user`
 --
 
 INSERT INTO `auth_user` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `is_staff`, `is_active`, `is_superuser`, `last_login`, `date_joined`) VALUES
-(1, 'admin', '', '', 'bjdag1234@gmail.com', 'sha1$c2120$17e30e24132d19842db804f28ba139a585a5a8ea', 1, 1, 1, '2012-03-20 14:12:03', '2012-03-13 09:27:10'),
-(10, 'benj', '', '', 'bjdag1234@gmail.com', 'sha1$8f467$ec4ee8a9a064823771f2d433d522dbe3a9f5ae6f', 1, 1, 1, '2012-03-20 18:24:09', '2012-03-20 10:52:46'),
-(11, 'test', '', '', '', 'sha1$5ac2b$e5ad60cdccd416b316e538ea118b5e4888b3c940', 0, 1, 0, '2012-03-20 15:07:07', '2012-03-20 10:52:55'),
-(12, 'test2', '', '', '', 'sha1$89614$a9bec670cde493e6223c5285abf8ab7e522ce516', 0, 1, 0, '2012-03-20 10:53:10', '2012-03-20 10:53:10'),
-(13, 'test3', '', '', '', 'sha1$8c846$2ab10a2cb98bba696f95dbc0d10cd394af56afd0', 0, 1, 0, '2012-03-20 10:53:26', '2012-03-20 10:53:26');
+(1, 'admin', 'Administrator', 'Admin', 'admin@admin.admin', 'sha1$b8071$9dbd0860398706a1834e118c7a99106ad5bf4b83', 1, 1, 1, '2012-03-23 01:39:50', '2012-03-22 16:07:17'),
+(6, 'staff', '', '', '', 'sha1$1c39b$49e9c5b5059330db139fbe9a0b615d328cb4faee', 1, 1, 0, '2012-03-23 01:33:34', '2012-03-23 01:26:13'),
+(7, 'user2', '', '', '', 'sha1$b640d$ba5c67ce1f380e68e71d77d1b7ae4edf901b2b94', 0, 1, 0, '2012-03-23 01:26:23', '2012-03-23 01:26:23'),
+(8, 'user1', '', '', '', 'sha1$829b0$6f743b549eabb936c9573980446b947c211f5776', 0, 1, 0, '2012-03-23 01:38:20', '2012-03-23 01:26:35');
 
 -- --------------------------------------------------------
 
@@ -177,7 +280,16 @@ CREATE TABLE IF NOT EXISTS `auth_user_groups` (
   UNIQUE KEY `user_id` (`user_id`,`group_id`),
   KEY `auth_user_groups_403f60f` (`user_id`),
   KEY `auth_user_groups_425ae3c4` (`group_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `auth_user_groups`
+--
+
+INSERT INTO `auth_user_groups` (`id`, `user_id`, `group_id`) VALUES
+(1, 6, 1),
+(7, 7, 2),
+(6, 8, 2);
 
 -- --------------------------------------------------------
 
@@ -193,7 +305,40 @@ CREATE TABLE IF NOT EXISTS `auth_user_user_permissions` (
   UNIQUE KEY `user_id` (`user_id`,`permission_id`),
   KEY `auth_user_user_permissions_403f60f` (`user_id`),
   KEY `auth_user_user_permissions_1e014c8f` (`permission_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=67 ;
+
+--
+-- Dumping data for table `auth_user_user_permissions`
+--
+
+INSERT INTO `auth_user_user_permissions` (`id`, `user_id`, `permission_id`) VALUES
+(29, 6, 1),
+(30, 6, 2),
+(31, 6, 3),
+(32, 6, 4),
+(33, 6, 5),
+(34, 6, 6),
+(35, 6, 7),
+(36, 6, 8),
+(37, 6, 9),
+(44, 6, 25),
+(47, 6, 26),
+(46, 6, 27),
+(40, 6, 31),
+(28, 6, 32),
+(45, 6, 33),
+(39, 6, 34),
+(42, 6, 35),
+(48, 6, 36),
+(41, 6, 40),
+(43, 6, 41),
+(38, 6, 42),
+(61, 7, 34),
+(62, 7, 35),
+(63, 7, 36),
+(64, 7, 40),
+(65, 7, 41),
+(66, 7, 42);
 
 -- --------------------------------------------------------
 
@@ -213,69 +358,28 @@ CREATE TABLE IF NOT EXISTS `django_admin_log` (
   PRIMARY KEY (`id`),
   KEY `django_admin_log_403f60f` (`user_id`),
   KEY `django_admin_log_1bb8f392` (`content_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 --
 -- Dumping data for table `django_admin_log`
 --
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `user_id`, `content_type_id`, `object_id`, `object_repr`, `action_flag`, `change_message`) VALUES
-(1, '2012-03-13 10:43:04', 1, 15, '1', 'Registration information for benj', 3, ''),
-(2, '2012-03-13 10:43:30', 1, 3, '2', 'benj', 3, ''),
-(3, '2012-03-13 10:50:17', 1, 3, '3', 'benj', 3, ''),
-(4, '2012-03-13 11:12:53', 1, 9, '1', 'ERDT', 1, ''),
-(5, '2012-03-13 11:13:06', 1, 9, '2', 'teaching lab 1', 1, ''),
-(6, '2012-03-13 11:13:10', 1, 9, '3', 'teaching lab 2', 1, ''),
-(7, '2012-03-14 07:18:17', 1, 3, '5', 'benj', 3, ''),
-(8, '2012-03-14 07:42:00', 1, 3, '6', 'benj', 3, ''),
-(9, '2012-03-14 11:43:22', 1, 3, '9', 'test', 1, ''),
-(10, '2012-03-14 11:45:04', 1, 3, '9', 'test', 2, 'Changed first_name, last_name, email and user_permissions.'),
-(11, '2012-03-14 11:45:42', 1, 15, '8', 'Registration information for test', 1, ''),
-(12, '2012-03-20 10:49:36', 1, 12, '9', 'CS30: Wednesday, March 21, 2012-Wednesday, March 21, 2012', 3, ''),
-(13, '2012-03-20 10:49:36', 1, 12, '7', 'bbbbbb: Tuesday, March 20, 2012-Tuesday, March 20, 2012', 3, ''),
-(14, '2012-03-20 10:49:36', 1, 12, '6', 'cs34: Tuesday, March 20, 2012-Tuesday, March 20, 2012', 3, ''),
-(15, '2012-03-20 10:49:36', 1, 12, '4', 'hjdfvgbh: Tuesday, March 20, 2012-Tuesday, March 20, 2012', 3, ''),
-(16, '2012-03-20 10:49:36', 1, 12, '1', 'dsds: Thursday, March 1, 2012-Thursday, March 1, 2012', 3, ''),
-(17, '2012-03-20 10:49:55', 1, 9, '3', 'teaching lab 2', 3, ''),
-(18, '2012-03-20 10:49:55', 1, 9, '2', 'teaching lab 1', 3, ''),
-(19, '2012-03-20 10:49:55', 1, 9, '1', 'ERDT', 3, ''),
-(20, '2012-03-20 10:50:13', 1, 3, '7', 'benj', 3, ''),
-(21, '2012-03-20 10:50:13', 1, 3, '9', 'test', 3, ''),
-(22, '2012-03-20 10:52:46', 1, 3, '10', 'benj', 1, ''),
-(23, '2012-03-20 10:52:55', 1, 3, '11', 'test', 1, ''),
-(24, '2012-03-20 10:53:10', 1, 3, '12', 'test2', 1, ''),
-(25, '2012-03-20 10:53:26', 1, 3, '13', 'test3', 1, ''),
-(26, '2012-03-20 10:53:55', 1, 3, '10', 'benj', 2, 'Changed email, is_staff and is_superuser.'),
-(27, '2012-03-20 10:54:41', 1, 15, '9', 'Registration information for benj', 1, ''),
-(28, '2012-03-20 10:55:22', 1, 15, '10', 'Registration information for test', 1, ''),
-(29, '2012-03-20 10:55:38', 1, 15, '11', 'Registration information for test2', 1, ''),
-(30, '2012-03-20 10:55:55', 1, 15, '12', 'Registration information for test3', 1, ''),
-(31, '2012-03-20 11:05:55', 1, 11, '1', 'Weekly', 1, ''),
-(32, '2012-03-20 11:19:24', 1, 9, '4', 'ERDT', 1, ''),
-(33, '2012-03-20 11:19:38', 1, 9, '5', 'Teaching Lab 1', 1, ''),
-(34, '2012-03-20 11:19:38', 1, 9, '6', 'Teaching Lab 1', 1, ''),
-(35, '2012-03-20 11:19:47', 1, 9, '7', 'Teaching Lab 2', 1, ''),
-(36, '2012-03-20 11:19:53', 1, 9, '8', 'Teaching Lab 3', 1, ''),
-(37, '2012-03-20 11:20:04', 1, 9, '5', 'Teaching Lab 1', 3, ''),
-(38, '2012-03-20 11:20:11', 1, 9, '6', 'Teaching Lab 1', 2, 'No fields changed.'),
-(39, '2012-03-20 11:20:27', 1, 9, '9', 'Classroom 1', 1, ''),
-(40, '2012-03-20 11:20:34', 1, 9, '10', 'Classroom 2', 1, ''),
-(41, '2012-03-20 11:20:39', 1, 9, '11', 'Classroom 3', 1, ''),
-(42, '2012-03-20 11:21:16', 1, 9, '12', 'Classroom 4', 1, ''),
-(43, '2012-03-20 11:21:43', 1, 9, '13', 'Lecture Hall', 1, ''),
-(44, '2012-03-20 11:22:01', 1, 9, '14', 'Conference Room', 1, ''),
-(45, '2012-03-20 11:29:00', 1, 11, '1', 'Monday', 2, 'Changed name, description and params.'),
-(46, '2012-03-20 11:29:49', 1, 11, '1', 'Monday', 2, 'No fields changed.'),
-(47, '2012-03-20 11:30:18', 1, 11, '2', 'Tuesdays', 1, ''),
-(48, '2012-03-20 11:30:53', 1, 11, '3', 'Wednesdays', 1, ''),
-(49, '2012-03-20 11:31:27', 1, 11, '4', 'Thursdays', 1, ''),
-(50, '2012-03-20 11:31:46', 1, 11, '5', 'Fridays', 1, ''),
-(51, '2012-03-20 11:32:12', 1, 11, '6', 'Saturdays', 1, ''),
-(52, '2012-03-20 11:32:39', 1, 11, '7', 'Sundays', 1, ''),
-(53, '2012-03-20 18:11:42', 10, 7, '1', 'example.com', 3, ''),
-(54, '2012-03-20 18:28:29', 10, 11, '8', 'Weekly', 1, ''),
-(55, '2012-03-20 18:31:15', 10, 11, '8', 'Weekly', 2, 'Changed description and params.'),
-(56, '2012-03-20 18:33:41', 10, 11, '8', 'Weekly', 2, 'Changed frequency and params.');
+(31, '2012-03-23 01:28:56', 1, 3, '7', 'user2', 2, 'Changed username and user_permissions.'),
+(32, '2012-03-23 01:29:43', 1, 2, '1', 'Staff', 1, ''),
+(33, '2012-03-23 01:31:39', 1, 2, '2', 'Users', 1, ''),
+(34, '2012-03-23 01:32:02', 1, 2, '3', 'Admins', 1, ''),
+(35, '2012-03-23 01:32:18', 1, 3, '6', 'staff', 2, 'Changed groups.'),
+(36, '2012-03-23 01:32:28', 1, 3, '8', 'user1', 2, 'Changed groups.'),
+(37, '2012-03-23 01:32:38', 1, 3, '7', 'user2', 2, 'Changed groups.'),
+(38, '2012-03-23 01:33:54', 6, 3, '8', 'user1', 2, 'Changed is_staff.'),
+(39, '2012-03-23 01:34:05', 6, 3, '7', 'user2', 2, 'Changed is_staff.'),
+(40, '2012-03-23 01:35:10', 8, 2, '2', 'Users', 2, 'Changed permissions.'),
+(41, '2012-03-23 01:36:06', 8, 2, '2', 'Users', 2, 'Changed permissions.'),
+(42, '2012-03-23 01:37:02', 1, 2, '2', 'Users', 2, 'No fields changed.'),
+(43, '2012-03-23 01:37:56', 1, 2, '1', 'Staff', 2, 'Changed permissions.'),
+(44, '2012-03-23 01:39:04', 1, 3, '8', 'user1', 2, 'Changed is_staff.'),
+(45, '2012-03-23 01:39:14', 1, 3, '7', 'user2', 2, 'Changed is_staff.');
 
 -- --------------------------------------------------------
 
@@ -305,11 +409,11 @@ INSERT INTO `django_content_type` (`id`, `name`, `app_label`, `model`) VALUES
 (6, 'session', 'sessions', 'session'),
 (7, 'site', 'sites', 'site'),
 (8, 'log entry', 'admin', 'logentry'),
-(9, 'calendar', 'schedule', 'calendar'),
-(10, 'calendar relation', 'schedule', 'calendarrelation'),
+(9, 'room', 'schedule', 'room'),
+(10, 'room relation', 'schedule', 'roomrelation'),
 (11, 'rule', 'schedule', 'rule'),
-(12, 'event', 'schedule', 'event'),
-(13, 'event relation', 'schedule', 'eventrelation'),
+(12, 'reservation', 'schedule', 'reservation'),
+(13, 'reservation relation', 'schedule', 'reservationrelation'),
 (14, 'occurrence', 'schedule', 'occurrence'),
 (15, 'registration profile', 'registration', 'registrationprofile');
 
@@ -326,20 +430,6 @@ CREATE TABLE IF NOT EXISTS `django_session` (
   PRIMARY KEY (`session_key`),
   KEY `django_session_3da3d3d8` (`expire_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `django_session`
---
-
-INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('2c3457bf8171bb2d012c77cbc43ee67f', 'YTJhYzI3NWU4MjdlMjQ0YzY2NWI1MWNiYzFiNmY2YmMzYmI4NTY3MzqAAn1xAS4=\n', '2012-04-03 18:35:21'),
-('569e2bdebee3c0cd32ebe30bd537e30d', 'YzllNDZmNjFmOWQ5MzQ2MDQ1ZTA0OTY1ZTFkZWQ5OGRhYjYwNmE3MjqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQd1Lg==\n', '2012-03-31 22:44:01'),
-('6ccee873e065b70b709290cee49eb9e3', 'YjY2NGFkNGJhYWFhNWI1ZDc5YjQ0ZmE4MjhkYmJlZWU1NDUwMWRjMDqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==\n', '2012-03-27 10:42:43'),
-('8ac4f88cc668698b9b414bef912949c9', 'OGFjNjA2ZDk4NTMyN2VkZTBjMGIyZWQ1MzI1YzRkODgwNDliY2E5ODqAAn1xAVUKdGVzdGNvb2tp\nZXECVQZ3b3JrZWRxA3Mu\n', '2012-04-03 18:14:58'),
-('a32141a7a12b6817c21ad49ba9b8acf3', 'OGFjNjA2ZDk4NTMyN2VkZTBjMGIyZWQ1MzI1YzRkODgwNDliY2E5ODqAAn1xAVUKdGVzdGNvb2tp\nZXECVQZ3b3JrZWRxA3Mu\n', '2012-04-03 18:18:32'),
-('a3645f70540ccd333dafc3f8d972bd5b', 'ZDk5YmI2ZmExMTE3YzdhMmRmNzY0YTk0NjA5NDg1ZDM2NTg2NTJkMjqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQp1Lg==\n', '2012-04-03 17:27:43'),
-('a847f8dc7f2159fdceeff7f90898c241', 'ZDk5YmI2ZmExMTE3YzdhMmRmNzY0YTk0NjA5NDg1ZDM2NTg2NTJkMjqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQp1Lg==\n', '2012-04-03 18:07:30'),
-('ffc87b9a6422e06edd2ef18798f29b1d', 'ZDk5YmI2ZmExMTE3YzdhMmRmNzY0YTk0NjA5NDg1ZDM2NTg2NTJkMjqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQp1Lg==\n', '2012-04-03 16:03:23');
 
 -- --------------------------------------------------------
 
@@ -373,111 +463,6 @@ CREATE TABLE IF NOT EXISTS `registration_registrationprofile` (
   `activation_key` varchar(40) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
-
---
--- Dumping data for table `registration_registrationprofile`
---
-
-INSERT INTO `registration_registrationprofile` (`id`, `user_id`, `activation_key`) VALUES
-(9, 10, 'sha$djy6ejuydf67uf67iws45ksoo969o'),
-(10, 11, 'sha$djy6ejuyddfghj4567fgjdgj'),
-(11, 12, 'sha$djy34567u8i9345t6yudfg'),
-(12, 13, 'sha$d456789dfghjkrtyjukijlretrgthj');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `schedule_calendar`
---
-
-CREATE TABLE IF NOT EXISTS `schedule_calendar` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) NOT NULL,
-  `slug` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `schedule_calendar_56ae2a2a` (`slug`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
-
---
--- Dumping data for table `schedule_calendar`
---
-
-INSERT INTO `schedule_calendar` (`id`, `name`, `slug`) VALUES
-(4, 'ERDT', 'erdt'),
-(6, 'Teaching Lab 1', 'teaching-lab-1'),
-(7, 'Teaching Lab 2', 'teaching-lab-2'),
-(8, 'Teaching Lab 3', 'teaching-lab-3'),
-(9, 'Classroom 1', 'classroom-1'),
-(10, 'Classroom 2', 'classroom-2'),
-(11, 'Classroom 3', 'classroom-3'),
-(12, 'Classroom 4', 'classroom-4'),
-(13, 'Lecture Hall', 'lecture-hall'),
-(14, 'Conference Room', 'conference-room');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `schedule_calendarrelation`
---
-
-CREATE TABLE IF NOT EXISTS `schedule_calendarrelation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `calendar_id` int(11) NOT NULL,
-  `content_type_id` int(11) NOT NULL,
-  `object_id` int(11) NOT NULL,
-  `distinction` varchar(20) DEFAULT NULL,
-  `inheritable` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `schedule_calendarrelation_447205e2` (`calendar_id`),
-  KEY `schedule_calendarrelation_1bb8f392` (`content_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `schedule_event`
---
-
-CREATE TABLE IF NOT EXISTS `schedule_event` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `start` datetime NOT NULL,
-  `end` datetime NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` longtext,
-  `creator_id` int(11) DEFAULT NULL,
-  `created_on` datetime NOT NULL,
-  `rule_id` int(11) DEFAULT NULL,
-  `end_recurring_period` datetime DEFAULT NULL,
-  `calendar_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `schedule_event_685aee7` (`creator_id`),
-  KEY `schedule_event_1c671d36` (`rule_id`),
-  KEY `schedule_event_447205e2` (`calendar_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
-
---
--- Dumping data for table `schedule_event`
---
-
-INSERT INTO `schedule_event` (`id`, `start`, `end`, `title`, `description`, `creator_id`, `created_on`, `rule_id`, `end_recurring_period`, `calendar_id`) VALUES
-(15, '2012-03-22 05:00:00', '2012-03-22 05:30:00', 'dddd', 'djdjdj', 10, '2012-03-20 18:29:28', 8, '2012-06-27 00:00:00', 4);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `schedule_eventrelation`
---
-
-CREATE TABLE IF NOT EXISTS `schedule_eventrelation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `event_id` int(11) NOT NULL,
-  `content_type_id` int(11) NOT NULL,
-  `object_id` int(11) NOT NULL,
-  `distinction` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `schedule_eventrelation_1647d06b` (`event_id`),
-  KEY `schedule_eventrelation_1bb8f392` (`content_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -488,7 +473,7 @@ CREATE TABLE IF NOT EXISTS `schedule_eventrelation` (
 
 CREATE TABLE IF NOT EXISTS `schedule_occurrence` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `event_id` int(11) NOT NULL,
+  `reservation_id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `description` longtext,
   `start` datetime NOT NULL,
@@ -497,7 +482,47 @@ CREATE TABLE IF NOT EXISTS `schedule_occurrence` (
   `original_start` datetime NOT NULL,
   `original_end` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `schedule_occurrence_1647d06b` (`event_id`)
+  KEY `schedule_occurrence_5ef52cd9` (`reservation_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedule_reservation`
+--
+
+CREATE TABLE IF NOT EXISTS `schedule_reservation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `start` datetime NOT NULL,
+  `end` datetime NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` longtext,
+  `creator_id` int(11) DEFAULT NULL,
+  `created_on` datetime NOT NULL,
+  `rule_id` int(11) DEFAULT NULL,
+  `end_recurring_period` datetime DEFAULT NULL,
+  `room_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `schedule_reservation_685aee7` (`creator_id`),
+  KEY `schedule_reservation_1c671d36` (`rule_id`),
+  KEY `schedule_reservation_109d8a5f` (`room_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedule_reservationrelation`
+--
+
+CREATE TABLE IF NOT EXISTS `schedule_reservationrelation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `reservation_id` int(11) NOT NULL,
+  `content_type_id` int(11) NOT NULL,
+  `object_id` int(11) NOT NULL,
+  `distinction` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `schedule_reservationrelation_5ef52cd9` (`reservation_id`),
+  KEY `schedule_reservationrelation_1bb8f392` (`content_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -512,7 +537,23 @@ CREATE TABLE IF NOT EXISTS `schedule_room` (
   `slug` varchar(200) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `schedule_room_56ae2a2a` (`slug`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `schedule_room`
+--
+
+INSERT INTO `schedule_room` (`id`, `name`, `slug`) VALUES
+(1, 'ERDT', 'erdt'),
+(2, 'Teaching Lab 1', 'teaching-lab-1'),
+(3, 'Teaching Lab 2', 'teaching-lab-2'),
+(4, 'Teaching Lab 3', 'teaching-lab-3'),
+(5, 'Classroom 1', 'classroom-1'),
+(6, 'Classroom 2', 'classroom-2'),
+(7, 'Classroom 3', 'classroom-3'),
+(8, 'Classroom 4', 'classroom-4'),
+(9, 'Conference Room', 'conference-room'),
+(10, 'Lecture Hall', 'lecture-hall');
 
 -- --------------------------------------------------------
 
@@ -545,21 +586,15 @@ CREATE TABLE IF NOT EXISTS `schedule_rule` (
   `frequency` varchar(10) NOT NULL,
   `params` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `schedule_rule`
 --
 
 INSERT INTO `schedule_rule` (`id`, `name`, `description`, `frequency`, `params`) VALUES
-(1, 'Monday', 'Reccurs every Monday', 'WEEKLY', 'byweekday:MO'),
-(2, 'Tuesdays', 'every tuesday', 'WEEKLY', 'byweekday:TU'),
-(3, 'Wednesdays', 'Wednesdays', 'WEEKLY', 'byweekday:WE'),
-(4, 'Thursdays', 'Every Thursdays', 'WEEKLY', 'byweekday:TH'),
-(5, 'Fridays', 'Every friday', 'WEEKLY', 'byweekday:FR'),
-(6, 'Saturdays', 'Every Saturday', 'WEEKLY', 'Saturday'),
-(7, 'Sundays', 'Every Sunday', 'WEEKLY', 'byweekno:SU'),
-(8, 'Weekly', 'every week, 100 occurences', 'DAILY', 'interval:7');
+(1, 'Weekly', 'Recurs weekly.', 'WEEKLY', 'byweekday'),
+(2, 'Daily', 'Recurs daily', 'DAILY', 'byday');
 
 --
 -- Constraints for dumped tables
@@ -612,32 +647,25 @@ ALTER TABLE `registration_registrationprofile`
   ADD CONSTRAINT `user_id_refs_id_313280c4` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
--- Constraints for table `schedule_calendarrelation`
---
-ALTER TABLE `schedule_calendarrelation`
-  ADD CONSTRAINT `calendar_id_refs_id_679e6b27` FOREIGN KEY (`calendar_id`) REFERENCES `schedule_calendar` (`id`),
-  ADD CONSTRAINT `content_type_id_refs_id_1789be3d` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`);
-
---
--- Constraints for table `schedule_event`
---
-ALTER TABLE `schedule_event`
-  ADD CONSTRAINT `calendar_id_refs_id_335d0cf0` FOREIGN KEY (`calendar_id`) REFERENCES `schedule_calendar` (`id`),
-  ADD CONSTRAINT `creator_id_refs_id_6d7cb7f0` FOREIGN KEY (`creator_id`) REFERENCES `auth_user` (`id`),
-  ADD CONSTRAINT `rule_id_refs_id_747df0fc` FOREIGN KEY (`rule_id`) REFERENCES `schedule_rule` (`id`);
-
---
--- Constraints for table `schedule_eventrelation`
---
-ALTER TABLE `schedule_eventrelation`
-  ADD CONSTRAINT `content_type_id_refs_id_1db76564` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
-  ADD CONSTRAINT `event_id_refs_id_6921d83b` FOREIGN KEY (`event_id`) REFERENCES `schedule_event` (`id`);
-
---
 -- Constraints for table `schedule_occurrence`
 --
 ALTER TABLE `schedule_occurrence`
-  ADD CONSTRAINT `event_id_refs_id_7c4b45ed` FOREIGN KEY (`event_id`) REFERENCES `schedule_event` (`id`);
+  ADD CONSTRAINT `reservation_id_refs_id_68259497` FOREIGN KEY (`reservation_id`) REFERENCES `schedule_reservation` (`id`);
+
+--
+-- Constraints for table `schedule_reservation`
+--
+ALTER TABLE `schedule_reservation`
+  ADD CONSTRAINT `creator_id_refs_id_28f6d494` FOREIGN KEY (`creator_id`) REFERENCES `auth_user` (`id`),
+  ADD CONSTRAINT `room_id_refs_id_7dd51417` FOREIGN KEY (`room_id`) REFERENCES `schedule_room` (`id`),
+  ADD CONSTRAINT `rule_id_refs_id_52abdec0` FOREIGN KEY (`rule_id`) REFERENCES `schedule_rule` (`id`);
+
+--
+-- Constraints for table `schedule_reservationrelation`
+--
+ALTER TABLE `schedule_reservationrelation`
+  ADD CONSTRAINT `content_type_id_refs_id_34baa41c` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  ADD CONSTRAINT `reservation_id_refs_id_66695627` FOREIGN KEY (`reservation_id`) REFERENCES `schedule_reservation` (`id`);
 
 --
 -- Constraints for table `schedule_roomrelation`
