@@ -67,7 +67,7 @@ h2. Sample MySQL Database
 	
 h1. Installation
 
-h2. Settings.py
+h2. settings.py and settings_prod.py 
 
 <pre>
 DATABASES = {
