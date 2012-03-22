@@ -1,0 +1,111 @@
+h1. Room Reservation System
+A Project for CS 192 - Software Engineering
+
+h1. Authors
+
+ * Benjamin Joseph Dag
+ * Chrislene Legaspina
+ * Lou Merlenette Somoson
+
+h2. Description
+
+ * This project is an online room reservation system 
+   for the rooms of the Department of Computer Science 
+   - UP Diliman building.
+
+ * For faculty and staff use only
+
+h2. Features
+
+ * User
+	  Login
+	  View reservations
+	  Reserve rooms
+	  Cancel reservations
+ * Administration
+	  Login
+	  Manage user accounts
+	  Manage reservations
+	  Manage rooms
+
+h2. Technologies Used
+
+ * Python 2.7.2
+ * Django 1.3.1
+ * ApacheFriends XAMPP Version 1.7.7
+	--MySQL 5.5.16 (Community Server)
+ * MySQL-python-1.2.3
+ * Existing Django Projects:
+	--Django-registration 0.8 
+	--Django-schedule by thauber/bartekgorny
+
+h3. Requirements 
+
+ * Python 2.7.2 (could be different)
+ * Django 1.3.1
+ * MySQL Server (could be changed via settings.py)
+ * Django-schedule-rooms: https://github.com/bjdag1234/django-schedule-rooms
+ * Django Registration: https://bitbucket.org/ubernostrum/django-registration
+ * Django-decorator-include: https://github.com/jeffkistler/django-decorator-include/
+ * Python-dateutil and voject
+ 
+h2. Settings.py
+<pre>
+DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+			'NAME': '<name of db here>',	 # Or path to database file if using sqlite3.
+			'USER': '<db username here>',	  # Not used with sqlite3.
+			'PASSWORD': '<db usr's psswd here>',	  # Not used with sqlite3.
+			'HOST': '<database server host>',		  # Set to empty string for localhost. Not used with sqlite3.
+			'PORT': '<database server port>',		  # Set to empty string for default. Not used with sqlite3.
+			}
+		}
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash if there is a path component (optional in other cases).
+# Examples: "http://media.lawrence.com", "http://example.com/media/"
+MEDIA_URL = '/site_media/'    # must match with your server's configuration
+
+# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
+# trailing slash.
+# Examples: "http://foo.com/media/", "/media/".
+ADMIN_MEDIA_PREFIX = '/site_media/admin/'  # must match site media's link above
+</pre>
+
+h2. APACHE's httpd.conf
+<pre>
+#ADD TO HTTPD.CONF
+#Add after the last LoadModule line
+LoadModule wsgi_module modules/mod_wsgi.so
+
+#Add to the end of the conf file
+#It should path/to/http-wsgi.conf
+Include "conf/extra/httpd-wsgi.conf"
+</pre>
+
+h2. httpd-wsgi.conf
+
+<pre>
+
+<Directory "/path/to/dcsrrs/">
+  Order allow,deny
+  Allow from all
+</Directory>
+
+<Directory "/path/to/dcsrrs/apache">
+  Order allow,deny
+  Allow from all
+</Directory>
+
+WSGIScriptAlias / "/path/to/dcsrrs/apache/django.wsgi"
+
+
+Alias /dcsrrs/site_media/ "C:/dcsrrs/site_media/"
+
+<Directory "/path/to/dcsrrs/site_media>
+Order deny,allow
+Allow from all
+</Directory>
+
+</pre>
