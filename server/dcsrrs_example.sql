@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 22, 2012 at 06:42 PM
+-- Generation Time: Mar 22, 2012 at 06:49 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -359,27 +359,6 @@ CREATE TABLE IF NOT EXISTS `django_admin_log` (
   KEY `django_admin_log_403f60f` (`user_id`),
   KEY `django_admin_log_1bb8f392` (`content_type_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
-
---
--- Dumping data for table `django_admin_log`
---
-
-INSERT INTO `django_admin_log` (`id`, `action_time`, `user_id`, `content_type_id`, `object_id`, `object_repr`, `action_flag`, `change_message`) VALUES
-(31, '2012-03-23 01:28:56', 1, 3, '7', 'user2', 2, 'Changed username and user_permissions.'),
-(32, '2012-03-23 01:29:43', 1, 2, '1', 'Staff', 1, ''),
-(33, '2012-03-23 01:31:39', 1, 2, '2', 'Users', 1, ''),
-(34, '2012-03-23 01:32:02', 1, 2, '3', 'Admins', 1, ''),
-(35, '2012-03-23 01:32:18', 1, 3, '6', 'staff', 2, 'Changed groups.'),
-(36, '2012-03-23 01:32:28', 1, 3, '8', 'user1', 2, 'Changed groups.'),
-(37, '2012-03-23 01:32:38', 1, 3, '7', 'user2', 2, 'Changed groups.'),
-(38, '2012-03-23 01:33:54', 6, 3, '8', 'user1', 2, 'Changed is_staff.'),
-(39, '2012-03-23 01:34:05', 6, 3, '7', 'user2', 2, 'Changed is_staff.'),
-(40, '2012-03-23 01:35:10', 8, 2, '2', 'Users', 2, 'Changed permissions.'),
-(41, '2012-03-23 01:36:06', 8, 2, '2', 'Users', 2, 'Changed permissions.'),
-(42, '2012-03-23 01:37:02', 1, 2, '2', 'Users', 2, 'No fields changed.'),
-(43, '2012-03-23 01:37:56', 1, 2, '1', 'Staff', 2, 'Changed permissions.'),
-(44, '2012-03-23 01:39:04', 1, 3, '8', 'user1', 2, 'Changed is_staff.'),
-(45, '2012-03-23 01:39:14', 1, 3, '7', 'user2', 2, 'Changed is_staff.');
 
 -- --------------------------------------------------------
 
