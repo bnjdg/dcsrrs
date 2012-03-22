@@ -50,6 +50,12 @@ h3. Requirements
  * Python-dateutil and voject
 
 	** mod_wsgi - Apache WSGI Module for Deployment
+	
+h2. Sample MySQL Database 
+	/server/dcsrrs.sql
+	
+h1. Installation
+
 h2. Settings.py
 
 <pre>
@@ -111,3 +117,9 @@ Order deny,allow
 Allow from all
 </Directory>
 </pre>
+
+h2. Optional
+
+Messages or announcements on the homepage could be placed
+inside the registration/login.html inside the 
+messages block
