@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 22, 2012 at 06:49 PM
--- Server version: 5.5.16
--- PHP Version: 5.3.8
+-- Generation Time: Mar 23, 2012 at 03:07 AM
+-- Server version: 5.5.8
+-- PHP Version: 5.3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -17,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `dcsrrs_prod2`
+-- Database: `dcsrrs_prod`
 --
 
 -- --------------------------------------------------------
@@ -56,43 +55,40 @@ CREATE TABLE IF NOT EXISTS `auth_group_permissions` (
   UNIQUE KEY `group_id` (`group_id`,`permission_id`),
   KEY `auth_group_permissions_425ae3c4` (`group_id`),
   KEY `auth_group_permissions_1e014c8f` (`permission_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=169 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=271 ;
 
 --
 -- Dumping data for table `auth_group_permissions`
 --
 
 INSERT INTO `auth_group_permissions` (`id`, `group_id`, `permission_id`) VALUES
-(139, 1, 7),
-(140, 1, 8),
-(141, 1, 9),
-(142, 1, 10),
-(143, 1, 11),
-(144, 1, 12),
-(145, 1, 13),
-(146, 1, 14),
-(147, 1, 15),
-(148, 1, 22),
-(149, 1, 23),
-(150, 1, 24),
-(151, 1, 25),
-(152, 1, 26),
-(153, 1, 27),
-(154, 1, 28),
-(155, 1, 29),
-(156, 1, 30),
-(157, 1, 31),
-(158, 1, 32),
-(159, 1, 33),
-(160, 1, 34),
-(161, 1, 35),
-(162, 1, 36),
-(163, 1, 37),
-(164, 1, 38),
-(165, 1, 39),
-(166, 1, 40),
-(167, 1, 41),
-(168, 1, 42),
+(244, 1, 1),
+(245, 1, 2),
+(246, 1, 3),
+(247, 1, 7),
+(248, 1, 8),
+(249, 1, 9),
+(250, 1, 10),
+(251, 1, 11),
+(252, 1, 12),
+(253, 1, 13),
+(254, 1, 14),
+(255, 1, 15),
+(256, 1, 22),
+(257, 1, 23),
+(258, 1, 24),
+(259, 1, 25),
+(260, 1, 26),
+(261, 1, 27),
+(262, 1, 31),
+(263, 1, 32),
+(264, 1, 33),
+(265, 1, 34),
+(266, 1, 35),
+(267, 1, 36),
+(268, 1, 40),
+(269, 1, 41),
+(270, 1, 42),
 (132, 2, 10),
 (133, 2, 12),
 (134, 2, 13),
@@ -107,51 +103,42 @@ INSERT INTO `auth_group_permissions` (`id`, `group_id`, `permission_id`) VALUES
 (130, 2, 40),
 (131, 2, 41),
 (137, 2, 42),
-(52, 3, 1),
-(53, 3, 2),
-(54, 3, 3),
-(55, 3, 4),
-(56, 3, 5),
-(57, 3, 6),
-(58, 3, 7),
-(59, 3, 8),
-(60, 3, 9),
-(61, 3, 10),
-(62, 3, 11),
-(63, 3, 12),
-(64, 3, 13),
-(65, 3, 14),
-(66, 3, 15),
-(67, 3, 16),
-(68, 3, 17),
-(69, 3, 18),
-(70, 3, 19),
-(71, 3, 20),
-(72, 3, 21),
-(73, 3, 22),
-(74, 3, 23),
-(75, 3, 24),
-(76, 3, 25),
-(77, 3, 26),
-(78, 3, 27),
-(79, 3, 28),
-(80, 3, 29),
-(81, 3, 30),
-(82, 3, 31),
-(83, 3, 32),
-(84, 3, 33),
-(85, 3, 34),
-(86, 3, 35),
-(87, 3, 36),
-(88, 3, 37),
-(89, 3, 38),
-(90, 3, 39),
-(91, 3, 40),
-(92, 3, 41),
-(93, 3, 42),
-(94, 3, 43),
-(95, 3, 44),
-(96, 3, 45);
+(208, 3, 1),
+(209, 3, 2),
+(210, 3, 3),
+(211, 3, 4),
+(212, 3, 5),
+(213, 3, 6),
+(214, 3, 7),
+(215, 3, 8),
+(216, 3, 9),
+(217, 3, 10),
+(218, 3, 11),
+(219, 3, 12),
+(220, 3, 13),
+(221, 3, 14),
+(222, 3, 15),
+(223, 3, 16),
+(224, 3, 17),
+(225, 3, 18),
+(226, 3, 22),
+(227, 3, 23),
+(228, 3, 24),
+(229, 3, 25),
+(230, 3, 26),
+(231, 3, 27),
+(232, 3, 31),
+(233, 3, 32),
+(234, 3, 33),
+(235, 3, 34),
+(236, 3, 35),
+(237, 3, 36),
+(238, 3, 37),
+(239, 3, 38),
+(240, 3, 39),
+(241, 3, 40),
+(242, 3, 41),
+(243, 3, 42);
 
 -- --------------------------------------------------------
 
@@ -165,7 +152,12 @@ CREATE TABLE IF NOT EXISTS `auth_message` (
   `message` longtext NOT NULL,
   PRIMARY KEY (`id`),
   KEY `auth_message_403f60f` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+
+--
+-- Dumping data for table `auth_message`
+--
+
 
 -- --------------------------------------------------------
 
@@ -254,17 +246,18 @@ CREATE TABLE IF NOT EXISTS `auth_user` (
   `date_joined` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `auth_user`
 --
 
 INSERT INTO `auth_user` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `is_staff`, `is_active`, `is_superuser`, `last_login`, `date_joined`) VALUES
-(1, 'admin', 'Administrator', 'Admin', 'admin@admin.admin', 'sha1$b8071$9dbd0860398706a1834e118c7a99106ad5bf4b83', 1, 1, 1, '2012-03-23 01:39:50', '2012-03-22 16:07:17'),
-(6, 'staff', '', '', '', 'sha1$1c39b$49e9c5b5059330db139fbe9a0b615d328cb4faee', 1, 1, 0, '2012-03-23 01:33:34', '2012-03-23 01:26:13'),
-(7, 'user2', '', '', '', 'sha1$b640d$ba5c67ce1f380e68e71d77d1b7ae4edf901b2b94', 0, 1, 0, '2012-03-23 01:26:23', '2012-03-23 01:26:23'),
-(8, 'user1', '', '', '', 'sha1$829b0$6f743b549eabb936c9573980446b947c211f5776', 0, 1, 0, '2012-03-23 01:38:20', '2012-03-23 01:26:35');
+(1, 'admin', 'Administrator', 'Admin', 'admin@admin.admin', 'sha1$b8071$9dbd0860398706a1834e118c7a99106ad5bf4b83', 1, 1, 0, '2012-03-23 10:02:15', '2012-03-22 16:07:17'),
+(6, 'staff', 'Staff', '', 'staff@domain.com', 'sha1$1c39b$49e9c5b5059330db139fbe9a0b615d328cb4faee', 1, 1, 0, '2012-03-23 01:33:34', '2012-03-23 01:26:13'),
+(7, 'user2', 'User2', '', 'user2@domain.com', 'sha1$b640d$ba5c67ce1f380e68e71d77d1b7ae4edf901b2b94', 0, 1, 0, '2012-03-23 01:26:23', '2012-03-23 01:26:23'),
+(8, 'user1', 'User 1', '', 'user@domain.com', 'sha1$829b0$6f743b549eabb936c9573980446b947c211f5776', 0, 1, 0, '2012-03-23 01:38:20', '2012-03-23 01:26:35'),
+(9, 'superadmin', 'SuperAdmin', '', 'superadmin@admin.com', 'sha1$e740a$3afa0df6672c2c468ff6c020a4819f9a5b804fb6', 1, 1, 1, '2012-03-23 09:58:58', '2012-03-23 09:57:25');
 
 -- --------------------------------------------------------
 
@@ -280,16 +273,17 @@ CREATE TABLE IF NOT EXISTS `auth_user_groups` (
   UNIQUE KEY `user_id` (`user_id`,`group_id`),
   KEY `auth_user_groups_403f60f` (`user_id`),
   KEY `auth_user_groups_425ae3c4` (`group_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `auth_user_groups`
 --
 
 INSERT INTO `auth_user_groups` (`id`, `user_id`, `group_id`) VALUES
-(1, 6, 1),
-(7, 7, 2),
-(6, 8, 2);
+(11, 1, 3),
+(9, 6, 1),
+(10, 7, 2),
+(8, 8, 2);
 
 -- --------------------------------------------------------
 
@@ -305,40 +299,85 @@ CREATE TABLE IF NOT EXISTS `auth_user_user_permissions` (
   UNIQUE KEY `user_id` (`user_id`,`permission_id`),
   KEY `auth_user_user_permissions_403f60f` (`user_id`),
   KEY `auth_user_user_permissions_1e014c8f` (`permission_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=67 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=139 ;
 
 --
 -- Dumping data for table `auth_user_user_permissions`
 --
 
 INSERT INTO `auth_user_user_permissions` (`id`, `user_id`, `permission_id`) VALUES
-(29, 6, 1),
-(30, 6, 2),
-(31, 6, 3),
-(32, 6, 4),
-(33, 6, 5),
-(34, 6, 6),
-(35, 6, 7),
-(36, 6, 8),
-(37, 6, 9),
-(44, 6, 25),
-(47, 6, 26),
-(46, 6, 27),
-(40, 6, 31),
-(28, 6, 32),
-(45, 6, 33),
-(39, 6, 34),
-(42, 6, 35),
-(48, 6, 36),
-(41, 6, 40),
-(43, 6, 41),
-(38, 6, 42),
-(61, 7, 34),
-(62, 7, 35),
-(63, 7, 36),
-(64, 7, 40),
-(65, 7, 41),
-(66, 7, 42);
+(68, 6, 1),
+(69, 6, 2),
+(70, 6, 3),
+(71, 6, 4),
+(72, 6, 5),
+(73, 6, 6),
+(74, 6, 7),
+(75, 6, 8),
+(76, 6, 9),
+(83, 6, 25),
+(86, 6, 26),
+(85, 6, 27),
+(79, 6, 31),
+(67, 6, 32),
+(84, 6, 33),
+(78, 6, 34),
+(81, 6, 35),
+(87, 6, 36),
+(80, 6, 40),
+(82, 6, 41),
+(77, 6, 42),
+(88, 7, 34),
+(89, 7, 35),
+(90, 7, 36),
+(91, 7, 40),
+(92, 7, 41),
+(93, 7, 42),
+(94, 9, 1),
+(95, 9, 2),
+(96, 9, 3),
+(97, 9, 4),
+(98, 9, 5),
+(99, 9, 6),
+(100, 9, 7),
+(101, 9, 8),
+(102, 9, 9),
+(103, 9, 10),
+(104, 9, 11),
+(105, 9, 12),
+(106, 9, 13),
+(107, 9, 14),
+(108, 9, 15),
+(109, 9, 16),
+(110, 9, 17),
+(111, 9, 18),
+(112, 9, 19),
+(113, 9, 20),
+(114, 9, 21),
+(115, 9, 22),
+(116, 9, 23),
+(117, 9, 24),
+(118, 9, 25),
+(119, 9, 26),
+(120, 9, 27),
+(121, 9, 28),
+(122, 9, 29),
+(123, 9, 30),
+(124, 9, 31),
+(125, 9, 32),
+(126, 9, 33),
+(127, 9, 34),
+(128, 9, 35),
+(129, 9, 36),
+(130, 9, 37),
+(131, 9, 38),
+(132, 9, 39),
+(133, 9, 40),
+(134, 9, 41),
+(135, 9, 42),
+(136, 9, 43),
+(137, 9, 44),
+(138, 9, 45);
 
 -- --------------------------------------------------------
 
@@ -358,7 +397,12 @@ CREATE TABLE IF NOT EXISTS `django_admin_log` (
   PRIMARY KEY (`id`),
   KEY `django_admin_log_403f60f` (`user_id`),
   KEY `django_admin_log_1bb8f392` (`content_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
 
 -- --------------------------------------------------------
 
@@ -410,6 +454,11 @@ CREATE TABLE IF NOT EXISTS `django_session` (
   KEY `django_session_3da3d3d8` (`expire_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `django_session`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -444,6 +493,11 @@ CREATE TABLE IF NOT EXISTS `registration_registrationprofile` (
   UNIQUE KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `registration_registrationprofile`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -463,6 +517,11 @@ CREATE TABLE IF NOT EXISTS `schedule_occurrence` (
   PRIMARY KEY (`id`),
   KEY `schedule_occurrence_5ef52cd9` (`reservation_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `schedule_occurrence`
+--
+
 
 -- --------------------------------------------------------
 
@@ -487,6 +546,11 @@ CREATE TABLE IF NOT EXISTS `schedule_reservation` (
   KEY `schedule_reservation_109d8a5f` (`room_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
+--
+-- Dumping data for table `schedule_reservation`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -503,6 +567,11 @@ CREATE TABLE IF NOT EXISTS `schedule_reservationrelation` (
   KEY `schedule_reservationrelation_5ef52cd9` (`reservation_id`),
   KEY `schedule_reservationrelation_1bb8f392` (`content_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `schedule_reservationrelation`
+--
+
 
 -- --------------------------------------------------------
 
@@ -551,6 +620,11 @@ CREATE TABLE IF NOT EXISTS `schedule_roomrelation` (
   KEY `schedule_roomrelation_109d8a5f` (`room_id`),
   KEY `schedule_roomrelation_1bb8f392` (`content_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `schedule_roomrelation`
+--
+
 
 -- --------------------------------------------------------
 
@@ -652,7 +726,3 @@ ALTER TABLE `schedule_reservationrelation`
 ALTER TABLE `schedule_roomrelation`
   ADD CONSTRAINT `content_type_id_refs_id_35f6a172` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   ADD CONSTRAINT `room_id_refs_id_5e69dd53` FOREIGN KEY (`room_id`) REFERENCES `schedule_room` (`id`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
