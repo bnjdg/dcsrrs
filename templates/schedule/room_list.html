@@ -4,7 +4,7 @@
 <h2>Available Rooms</h2>
 <ul>
 {% for cal in object_list %}
-<li>  <a href="{% url month_room cal.slug %}"> <b>{{ cal }}</b> </a></li><br/>
+<li>  <a href="{% url month_room cal.slug %}"> <b>{{ cal }}</b> </a></li>
 {% endfor %}
 </ul>
 {% endblock %}
