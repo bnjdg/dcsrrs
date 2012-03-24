@@ -21,6 +21,11 @@ urlpatterns = patterns('',
 	(r'^reserve_rooms/$', views.reserve_rooms),
 	(r'^password_change/$', 'django.contrib.auth.views.password_change'),
 	(r'^password_change/done/$', 'django.contrib.auth.views.password_change_done'),
+    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': '/home/bjdag/dcsrrs/site_media'}),
+    (r'^site_media/img/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': '/home/bjdag/dcsrrs/site_media/img'}),
+
 
 	url(r'^reservation/create/(?P<room_slug>[-\w]+)/$',
 		'views.create_or_edit_reservation',
@@ -40,3 +45,5 @@ if settings.DEBUG:
 		 {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
 	)
 
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()

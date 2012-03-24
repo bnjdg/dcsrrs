@@ -43,6 +43,9 @@ USE_I18N = True
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = os.path.join(PROJECT_DIR, "site_media")
 
+SITE_MEDIA = '/home/dcsrrs/site_media/'
+
+
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
@@ -61,7 +64,7 @@ TEMPLATE_LOADERS = (
 		'django.template.loaders.filesystem.Loader',
 		'django.template.loaders.app_directories.Loader',
 		)
-		
+
 MIDDLEWARE_CLASSES = (
 		'django.middleware.common.CommonMiddleware',
 		'django.contrib.sessions.middleware.SessionMiddleware',
@@ -91,7 +94,7 @@ INSTALLED_APPS = (
 		'schedule',
 		'registration',
 		)
-		
+
 #parameters for django-registration
 ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_USE_TLS = True

@@ -14,11 +14,11 @@ MANAGERS = ADMINS
 
 DATABASES = {
 		'default': {
-			'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-			'NAME': '',			 # Or path to database file if using sqlite3.
-			'USER': '',					  # Not used with sqlite3.
-			'PASSWORD': '',				  # Not used with sqlite3.
-			'HOST': '',					  # Set to empty string for localhost. Not used with sqlite3.
+			'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+			'NAME': 'bjdag$dcsrrs',			 # Or path to database file if using sqlite3.
+			'USER': 'bjdag',					  # Not used with sqlite3.
+			'PASSWORD': 'ogrelive',				  # Not used with sqlite3.
+			'HOST': 'mysql.server',					  # Set to empty string for localhost. Not used with sqlite3.
 			'PORT': '',					  # Set to empty string for default. Not used with sqlite3.
 			}
 		}
@@ -56,12 +56,13 @@ ADMIN_MEDIA_PREFIX = '/site_media/admin/'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '+3^08&lnsm^nl1iozv=a-9!e4x$*o%g6pkx=y$)oc8#r$ndn7t'
 
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
 		'django.template.loaders.filesystem.Loader',
 		'django.template.loaders.app_directories.Loader',
 		)
-		
+
 MIDDLEWARE_CLASSES = (
 		'django.middleware.common.CommonMiddleware',
 		'django.contrib.sessions.middleware.SessionMiddleware',
@@ -91,13 +92,13 @@ INSTALLED_APPS = (
 		'schedule',
 		'registration',
 		)
-		
+
 #parameters for django-registration
 ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_USE_TLS = True
-EMAIL_HOST = ''
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'roomres2011@gmail.com'
+EMAIL_HOST_PASSWORD = 'cs192rrs'
 EMAIL_PORT = 587
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -112,3 +113,4 @@ FIRST_DAY_OF_WEEK = 7 # SUNDAY
 
 LOGIN_REDIRECT_URL = '/'
 
+STATIC_ROOT= '/';
