@@ -101,7 +101,8 @@ img {
 }
 
 #logo {
-	background: #FE7B09 url(/site_media/registration/img/DCSLogo.jpg) no-repeat;
+	background: #FE7B09 url('/site_media/images/DCSlogo.jpg') no-repeat;
+    background-size: 100%;
 	position:absolute;
 	height: 97px;
 	width: 100px;
